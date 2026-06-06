@@ -96,74 +96,68 @@
   </div>
 </div>
 
-<!-- ================= SERVICES (cosmos-style interactive field) ================= -->
-<section class="section cosmos-section" id="hizmetler" data-screen-label="Hizmetler">
-  <div class="wrap cosmos-head">
+<!-- ================= SERVICES (4 kart grid) ================= -->
+<section class="section" id="hizmetler" data-screen-label="Hizmetler">
+  <div class="wrap">
     <span class="eyebrow">Hizmetler</span>
-    <h2>Dört disiplin,<br />tek bir <span class="accent">vizyon</span>.</h2>
-    <p>Alanı sürükleyin, keşfedin. Bir disipline dokunun, işleri görün.</p>
+    <h2 style="margin-top:20px;">Dört disiplin,<br />tek bir <span class="accent">vizyon</span>.</h2>
+    <p style="margin-top:16px;max-width:520px;color:var(--muted);">Her projede strateji, tasarım ve teknolojiyi bir arada sunuyoruz.</p>
   </div>
 
-  <div class="cosmos-field" id="cosmosField" aria-label="Sürüklenebilir hizmet alanı">
-    <div class="cosmos-plane" id="cosmosPlane">
+  <div class="wrap svc-grid" style="margin-top:clamp(40px,6vw,80px);">
 
-      <!-- discipline tiles -->
-      <button class="ctile ctile--disc" data-service="uiux" data-x="-360" data-y="-110" data-depth="1.0" style="--c: var(--lime);">
-        <span class="ctile-num">01 — UI/UX</span>
-        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg></span>
-        <span class="ctile-title">Arayüz &amp;<br />Deneyim Tasarımı</span>
-        <span class="ctile-cue">Projeleri gör →</span>
-      </button>
+    <a class="svc-card reveal" href="isler.html?kategori=uiux" style="--c:var(--lime)">
+      <div class="svc-top">
+        <span class="svc-num">01</span>
+        <span class="svc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg>
+        </span>
+      </div>
+      <div class="svc-label">UI/UX</div>
+      <h3 class="svc-title">Arayüz &amp;<br />Deneyim Tasarımı</h3>
+      <p class="svc-desc">Web, mobil ve otomasyon arayüzleri — kullanıcı araştırmasından piksel mükemmelliğine.</p>
+      <span class="svc-cue">Projeleri gör →</span>
+    </a>
 
-      <button class="ctile ctile--disc" data-service="3d" data-x="-110" data-y="160" data-depth="1.0" style="--c: var(--coral);">
-        <span class="ctile-num">02 — 3D</span>
-        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg></span>
-        <span class="ctile-title">3D Modelleme &amp;<br />Görselleştirme</span>
-        <span class="ctile-cue">Projeleri gör →</span>
-      </button>
+    <a class="svc-card reveal" href="isler.html?kategori=3d" style="--c:var(--coral)" data-d="1">
+      <div class="svc-top">
+        <span class="svc-num">02</span>
+        <span class="svc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="28" height="28"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg>
+        </span>
+      </div>
+      <div class="svc-label">3D</div>
+      <h3 class="svc-title">3D Modelleme &amp;<br />Görselleştirme</h3>
+      <p class="svc-desc">Mimari render, iç mekan, kat planı ve fotogerçekçi ürün görselleri.</p>
+      <span class="svc-cue">Projeleri gör →</span>
+    </a>
 
-      <button class="ctile ctile--disc" data-service="ai" data-x="180" data-y="-150" data-depth="1.0" style="--c: var(--violet);">
-        <span class="ctile-num">03 — AI</span>
-        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>
-        <span class="ctile-title">Yapay Zekâ<br />Çözümleri</span>
-        <span class="ctile-cue">Projeleri gör →</span>
-      </button>
+    <a class="svc-card reveal" href="isler.html?kategori=ai" style="--c:var(--violet)" data-d="2">
+      <div class="svc-top">
+        <span class="svc-num">03</span>
+        <span class="svc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="28" height="28"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        </span>
+      </div>
+      <div class="svc-label">AI</div>
+      <h3 class="svc-title">Yapay Zekâ<br />Çözümleri</h3>
+      <p class="svc-desc">Üretken YZ, otomasyon ve akıllı asistanlarla iş süreçlerini hızlandırıyoruz.</p>
+      <span class="svc-cue">Projeleri gör →</span>
+    </a>
 
-      <button class="ctile ctile--disc" data-service="product" data-x="470" data-y="160" data-depth="1.0" style="--c: var(--sky);">
-        <span class="ctile-num">04 — PRODUCT</span>
-        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12m0 9V12m9-4.5L12 12"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></span>
-        <span class="ctile-title">Ürün Tasarımı<br />&amp; Stratejisi</span>
-        <span class="ctile-cue">Projeleri gör →</span>
-      </button>
+    <a class="svc-card reveal" href="isler.html?kategori=product" style="--c:var(--sky)" data-d="3">
+      <div class="svc-top">
+        <span class="svc-num">04</span>
+        <span class="svc-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="28" height="28"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12m0 9V12m9-4.5L12 12"/></svg>
+        </span>
+      </div>
+      <div class="svc-label">PRODUCT</div>
+      <h3 class="svc-title">Ürün Tasarımı<br />&amp; Stratejisi</h3>
+      <p class="svc-desc">Konseptten üretime; konsept tasarım, animasyon, teknik çizimler ve lifestyle görseller.</p>
+      <span class="svc-cue">Projeleri gör →</span>
+    </a>
 
-      <!-- satellite keyword chips (parallax depth varies) -->
-      <span class="ctile ctile--chip" data-x="-540" data-y="120" data-depth="1.5">Araştırma</span>
-      <span class="ctile ctile--chip" data-x="-150" data-y="-258" data-depth="1.8">Wireframe</span>
-      <span class="ctile ctile--chip" data-x="250" data-y="-264" data-depth="1.6">Render</span>
-      <span class="ctile ctile--chip" data-x="-580" data-y="-70" data-depth="2.0">Prototip</span>
-      <span class="ctile ctile--chip" data-x="720" data-y="70" data-depth="1.7">WebGL</span>
-      <span class="ctile ctile--chip" data-x="612" data-y="-60" data-depth="1.9">Otomasyon</span>
-      <span class="ctile ctile--chip" data-x="-360" data-y="300" data-depth="1.4">Tasarım Sistemi</span>
-      <span class="ctile ctile--chip" data-x="556" data-y="-214" data-depth="2.1">Üretken YZ</span>
-      <span class="ctile ctile--chip" data-x="96" data-y="330" data-depth="1.5">Animasyon</span>
-      <span class="ctile ctile--chip" data-x="-700" data-y="258" data-depth="2.2">Motion</span>
-      <span class="ctile ctile--chip" data-x="760" data-y="300" data-depth="2.0">Asistanlar</span>
-      <span class="ctile ctile--chip" data-x="200" data-y="370" data-depth="1.8">Yol Haritası</span>
-      <span class="ctile ctile--chip" data-x="-150" data-y="380" data-depth="1.6">Ürün Stratejisi</span>
-      <span class="ctile ctile--chip" data-x="170" data-y="-340" data-depth="2.0">MVP</span>
-
-      <!-- decorative star dots -->
-      <span class="cdot" data-x="-300" data-y="60" data-depth="2.6"></span>
-      <span class="cdot" data-x="320" data-y="-180" data-depth="3.0"></span>
-      <span class="cdot" data-x="640" data-y="-30" data-depth="2.4"></span>
-      <span class="cdot" data-x="-480" data-y="-260" data-depth="2.8"></span>
-      <span class="cdot" data-x="40" data-y="-60" data-depth="3.2"></span>
-      <span class="cdot" data-x="-120" data-y="280" data-depth="2.5"></span>
-      <span class="cdot" data-x="820" data-y="200" data-depth="2.9"></span>
-    </div>
-
-    <div class="cosmos-hint" id="cosmosHint">↔ sürükle</div>
-    <div class="cosmos-cursor" id="cosmosCursor"><span>sürükle</span></div>
   </div>
 </section>
 
@@ -288,10 +282,9 @@
       <p>Aklınızdaki proje ister bir fikir ister hazır bir brief olsun — kahve eşliğinde konuşalım.</p>
       <div class="cta-actions">
         <a href="mailto:merhaba@studiobleur.studio" class="btn btn-primary">Proje başlat <span class="arr">→</span></a>
-        <a href="#" class="btn btn-ghost">Sunum dosyasını indir</a>
       </div>
       <br />
-      <a href="mailto:merhaba@studiobleur.studio" class="mail">merhaba@studiobleur.studio</a>
+      <a href="mailto:info@studiobleur.com" class="mail">info@studiobleur.com</a>
     </div>
   </div>
 </section>
@@ -393,7 +386,6 @@
 <script src="team-data.js"></script>
 <script src="team.js"></script>
 <script src="main.js"></script>
-<script src="cosmos.js"></script>
 <script src="admin.js"></script>
 <script type="module" src="hero3d.js"></script>
 
