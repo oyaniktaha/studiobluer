@@ -285,8 +285,8 @@
 
   function buildTabs() {
     const tabs = overlay.querySelector("#adminTabs");
-    const allTabs = [...W.CATS, "ekip", "iletisim"];
-    const tabLabels = { ...CAT_LABEL, ekip: "👥 Ekip", iletisim: "📍 İletişim" };
+    const allTabs = [...W.CATS, "ekip"];
+    const tabLabels = { ...CAT_LABEL, ekip: "👥 Ekip" };
     tabs.innerHTML = allTabs.map(
       (c) => `<button class="admin-tab${c === activeCat ? " active" : ""}" data-cat="${c}">${tabLabels[c]}</button>`
     ).join("");
@@ -299,14 +299,9 @@
           overlay.querySelector("#adminForm").style.display = "none";
           overlay.querySelector("#adminList").innerHTML = "";
           renderTeamAdmin();
-        } else if (activeCat === "iletisim") {
-          overlay.querySelector("#adminForm").style.display = "none";
-          overlay.querySelector("#adminList").innerHTML = "";
-          renderContactAdmin();
         } else {
           overlay.querySelector("#adminForm").style.display = "";
           overlay.querySelector("#adminTeamPanel") && overlay.querySelector("#adminTeamPanel").remove();
-          overlay.querySelector("#adminContactPanel") && overlay.querySelector("#adminContactPanel").remove();
           renderList();
           updateSubcatOptions(activeCat, null);
         }
@@ -383,67 +378,6 @@
         T.save(members2);
         showToast("Ekip üyesi kaydedildi ✓");
       });
-    });
-  }
-
-  /* ---- contact admin panel ---- */
-  function renderContactAdmin() {
-    const list = overlay.querySelector("#adminList");
-    const C = window.StudioContact ? window.StudioContact.load() : {};
-    list.innerHTML = `
-      <div id="adminContactPanel" style="padding:8px 0;">
-        <p style="color:var(--muted);font-size:.84rem;margin-bottom:24px;">Bize Ulaşın sayfasındaki iletişim bilgilerini düzenleyin.</p>
-        <div class="admin-field">
-          <label>Telefon</label>
-          <input type="tel" id="acPhone" placeholder="+90 555 000 00 00" value="${escapeHtml(C.phone||'')}" />
-        </div>
-        <div class="admin-field">
-          <label>E-posta</label>
-          <input type="email" id="acEmail" placeholder="info@studiobleur.com" value="${escapeHtml(C.email||'')}" />
-        </div>
-        <div class="admin-field">
-          <label>Adres</label>
-          <input type="text" id="acAddress" placeholder="Alanya, Antalya / Türkiye" value="${escapeHtml(C.address||'')}" />
-        </div>
-        <div class="admin-field">
-          <label>Google Maps Embed URL <span style="text-transform:none;letter-spacing:0;font-size:.66rem;color:var(--faint)">— Google Maps → Paylaş → Haritayı göm → src URL</span></label>
-          <input type="url" id="acMapUrl" placeholder="https://maps.google.com/maps?q=...&output=embed" value="${escapeHtml(C.mapUrl||'')}" />
-        </div>
-        <div class="admin-field">
-          <label>Instagram <span style="text-transform:none;letter-spacing:0;font-size:.66rem;color:var(--faint)">kullanıcı adı veya tam URL</span></label>
-          <input type="text" id="acInstagram" placeholder="studiobleur" value="${escapeHtml(C.instagram||'')}" />
-        </div>
-        <div class="admin-field">
-          <label>Behance <span style="text-transform:none;letter-spacing:0;font-size:.66rem;color:var(--faint)">kullanıcı adı veya tam URL</span></label>
-          <input type="text" id="acBehance" placeholder="studiobleur" value="${escapeHtml(C.behance||'')}" />
-        </div>
-        <div class="admin-field">
-          <label>LinkedIn <span style="text-transform:none;letter-spacing:0;font-size:.66rem;color:var(--faint)">kullanıcı adı veya tam URL</span></label>
-          <input type="text" id="acLinkedin" placeholder="studiobleur" value="${escapeHtml(C.linkedin||'')}" />
-        </div>
-        <div class="admin-field">
-          <label>X / Twitter <span style="text-transform:none;letter-spacing:0;font-size:.66rem;color:var(--faint)">kullanıcı adı veya tam URL</span></label>
-          <input type="text" id="acTwitter" placeholder="studiobleur" value="${escapeHtml(C.twitter||'')}" />
-        </div>
-        <div class="admin-field full admin-actions" style="margin-top:4px;">
-          <button type="button" class="btn-sm solid" id="acSave">Kaydet</button>
-        </div>
-      </div>`;
-
-    list.querySelector("#acSave").addEventListener("click", () => {
-      const data = {
-        phone:     list.querySelector("#acPhone").value.trim(),
-        email:     list.querySelector("#acEmail").value.trim(),
-        address:   list.querySelector("#acAddress").value.trim(),
-        mapUrl:    list.querySelector("#acMapUrl").value.trim(),
-        instagram: list.querySelector("#acInstagram").value.trim(),
-        behance:   list.querySelector("#acBehance").value.trim(),
-        linkedin:  list.querySelector("#acLinkedin").value.trim(),
-        twitter:   list.querySelector("#acTwitter").value.trim(),
-      };
-      if (window.StudioContact) window.StudioContact.save(data);
-      else localStorage.setItem("studiobleur_contact", JSON.stringify(data));
-      showToast("İletişim bilgileri kaydedildi ✓");
     });
   }
 
@@ -675,12 +609,6 @@
            "window.STUDIOLUME_WORKS = " + JSON.stringify(works, null, 2) + ";\n";
   }
 
-  function buildContactContent() {
-    const c = window.StudioContact ? window.StudioContact.load() : {};
-    return window.StudioContact ? window.StudioContact.buildJS(c)
-      : "window.STUDIOBLEUR_CONTACT = " + JSON.stringify(c, null, 2) + ";\n";
-  }
-
   function buildTeamContent() {
     const T = window.StudioTeam;
     const members = T ? T.load() : (window.STUDIOBLEUR_TEAM || []);
@@ -720,58 +648,25 @@
     return true;
   }
 
-  // Tüm site dosyaları — fetch edip push edilecek
-  var SITE_FILES = [
-    "studiolume.html", "styles.css", "main.js", "admin.js", "cosmos.js",
-    "hero3d.js", "image-slot.js", "portfolio.js",
-    "isler.html", "isler.css",
-    "proje.html", "proje.js", "proje.css",
-    "team.js", "bize-ulasin.html", "iletisim.html",
-    "vercel.json", "index.html"
-  ];
-
-  async function fetchFileContent(filename) {
-    const r = await fetch(filename + "?_=" + Date.now());
-    if (!r.ok) return null;
-    return await r.text();
-  }
-
   async function publish() {
     const token = getToken();
     if (!token) { showToast("Token girilmedi — yayınlanamadı."); return; }
 
+    showToast("GitHub'a gönderiliyor…");
     const ts = new Date().toLocaleString("tr-TR");
-    const publishBtn = overlay.querySelector("#adminPublish");
-    if (publishBtn) { publishBtn.disabled = true; publishBtn.textContent = "Gönderiliyor…"; }
 
     try {
-      // 1) Veri dosyaları
-      showToast("📦 Veri dosyaları gönderiliyor…");
-      await pushFile(token, "works-data.js",   buildContent(),        "İşler — " + ts);
-      await pushFile(token, "team-data.js",    buildTeamContent(),    "Ekip — " + ts);
-      await pushFile(token, "contact-data.js", buildContactContent(), "İletişim — " + ts);
-
-      // 2) Site dosyaları
-      let ok = 0, skip = 0;
-      for (const fname of SITE_FILES) {
-        showToast("🔄 " + fname + " gönderiliyor…");
-        const content = await fetchFileContent(fname);
-        if (!content) { skip++; continue; }
-        await pushFile(token, fname, content, "Site güncellendi: " + fname + " — " + ts);
-        ok++;
-      }
-
-      showToast("✅ Yayınlandı! " + ok + " dosya gönderildi. 30 sn içinde canlıda.");
+      await pushFile(token, "works-data.js",  buildContent(),     "İşler güncellendi — " + ts);
+      await pushFile(token, "team-data.js",   buildTeamContent(), "Ekip güncellendi — " + ts);
+      showToast("✓ Yayınlandı! 30 sn içinde canlıda.");
     } catch (e) {
       if (e.message === "TOKEN_INVALID") {
         localStorage.removeItem(GH_TOKEN_KEY);
-        showToast("❌ Token geçersiz — silindi, tekrar deneyin.");
-        if (publishBtn) { publishBtn.disabled = false; publishBtn.textContent = "🚀 Yayınla"; }
+        showToast("Token geçersiz — silindi, tekrar deneyin.");
         return;
       }
-      showToast("❌ Hata: " + e.message);
-    } finally {
-      if (publishBtn) { publishBtn.disabled = false; publishBtn.textContent = "🚀 Yayınla"; }
+      showToast("Hata: " + e.message + " — dosyalar indiriliyor.");
+      downloadFallback(buildContent());
     }
   }
 
