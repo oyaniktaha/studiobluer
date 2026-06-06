@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Proje Başlat — studiobleur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #070709;
+  --surface: #111114;
+  --surface-2: #18181c;
+  --line: rgba(255,255,255,0.07);
+  --line-2: rgba(255,255,255,0.12);
+  --text: #f0f0f2;
+  --muted: #888892;
+  --faint: #444450;
+  --lime: #bef078;
+  --coral: #ff7a5c;
+  --violet: #9b7bff;
+  --sky: #5bc8f5;
+  --ease: cubic-bezier(0.23,1,0.32,1);
+  --display: 'Syne', sans-serif;
+  --body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAV */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.topbar .logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.topbar .logo .dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; display: inline-block; }
+.topbar .back {
+  font-size: .85rem;
+  color: var(--muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .3s;
+}
+.topbar .back:hover { color: var(--text); }
+
+/* LAYOUT */
+.page {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 73px);
+}
+
+/* LEFT PANEL */
+.left-panel {
+  padding: clamp(48px,7vw,100px) clamp(32px,5vw,80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.left-panel::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(190,240,120,0.06), transparent 65%);
+  pointer-events: none;
+}
+.eyebrow {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 20px;
+}
+.left-panel h1 {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1.0;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.left-panel h1 em {
+  font-style: italic;
+  color: var(--lime);
+}
+.left-panel p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 48px;
+  text-wrap: pretty;
+}
+
+/* CATEGORY CHIPS */
+.cat-label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 14px;
+}
+.cat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cat-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--line-2);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: default;
+  transition: all .3s;
+}
+.cat-chip span { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .5; }
+.cat-chip.c-lime  { color: var(--lime);   border-color: rgba(190,240,120,.25); background: rgba(190,240,120,.04); }
+.cat-chip.c-coral { color: var(--coral);  border-color: rgba(255,122,92,.25);  background: rgba(255,122,92,.04); }
+.cat-chip.c-violet{ color: var(--violet); border-color: rgba(155,123,255,.25); background: rgba(155,123,255,.04); }
+.cat-chip.c-sky   { color: var(--sky);    border-color: rgba(91,200,245,.25);  background: rgba(91,200,245,.04); }
+
+/* CONTACT DETAILS */
+.contact-details {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.contact-details a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .9rem;
+  transition: color .3s;
+}
+.contact-details a:hover { color: var(--lime); }
+
+/* RIGHT PANEL — FORM */
+.right-panel {
+  padding: clamp(48px,7vw,100px) clamp(32px,5vw,80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 520px;
+  width: 100%;
+}
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.field input,
+.field textarea,
+.field select {
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .3s, background .3s;
+  width: 100%;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: rgba(190,240,120,.5);
+  background: var(--surface-2);
+}
+.field textarea { resize: vertical; min-height: 120px; }
+.field select { appearance: none; cursor: pointer; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--faint); }
+
+/* CATEGORY SELECT CARDS */
+.cat-select {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.cat-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all .3s;
+  user-select: none;
+  position: relative;
+}
+.cat-opt input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.cat-opt .co-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform .3s;
+}
+.cat-opt .co-label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color .3s;
+  flex: 1;
+}
+.cat-opt .co-check {
+  width: 18px; height: 18px;
+  border-radius: 6px;
+  border: 1.5px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: all .3s;
+}
+.cat-opt .co-check svg { display: none; }
+.cat-opt.selected {
+  border-color: color-mix(in oklab, var(--cat-c), transparent 55%);
+  background: color-mix(in oklab, var(--cat-c), transparent 92%);
+}
+.cat-opt.selected .co-label { color: var(--cat-c); }
+.cat-opt.selected .co-dot { transform: scale(1.3); }
+.cat-opt.selected .co-check {
+  background: var(--cat-c);
+  border-color: var(--cat-c);
+}
+.cat-opt.selected .co-check svg { display: block; }
+
+/* FILE UPLOAD */
+.file-drop {
+  border: 1.5px dashed var(--line-2);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: border-color .3s, background .3s;
+  background: var(--surface);
+}
+.file-drop:hover { border-color: rgba(190,240,120,.4); background: var(--surface-2); }
+.file-drop input { display: none; }
+.file-drop .fd-icon { font-size: 1.5rem; opacity: .5; }
+.file-drop .fd-text { font-size: .82rem; color: var(--muted); text-align: center; }
+.file-drop .fd-text strong { color: var(--lime); }
+.file-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.file-item {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--surface-2); border: 1px solid var(--line-2);
+  border-radius: 8px; padding: 6px 10px;
+  font-size: .78rem; color: var(--muted);
+}
+.file-item button {
+  background: none; border: none; cursor: pointer;
+  color: var(--faint); font-size: .9rem; line-height: 1;
+  transition: color .2s;
+}
+.file-item button:hover { color: #ff6b6b; }
+
+/* SUBMIT */
+.btn-submit {
+  background: var(--lime);
+  color: #0a0a0c;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s, transform .2s;
+  width: 100%;
+  margin-top: 4px;
+}
+.btn-submit:hover { opacity: .9; transform: translateY(-2px); }
+.btn-submit:disabled { opacity: .4; transform: none; cursor: not-allowed; }
+
+/* SUCCESS */
+.success-msg {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid rgba(190,240,120,.2);
+  border-radius: 20px;
+}
+.success-msg .sm-icon { font-size: 2.5rem; }
+.success-msg h3 { font-family: var(--display); font-size: 1.5rem; font-weight: 800; }
+.success-msg p { color: var(--muted); font-size: .92rem; line-height: 1.7; }
+
+@media (max-width: 860px) {
+  .page { grid-template-columns: 1fr; }
+  .left-panel { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 40px; }
+  .topbar { padding: 20px 24px; }
+  .left-panel, .right-panel { padding: 40px 24px; }
+}
+@media (max-width: 480px) {
+  .row-2 { grid-template-columns: 1fr; }
+  .cat-select { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <a href="studiolume.html" class="logo"><span class="dot"></span>studiobleur</a>
+  <a href="studiolume.html" class="back">← Geri dön</a>
+</header>
+
+<!-- MAIN -->
+<main class="page">
+
+  <!-- LEFT -->
+  <div class="left-panel">
+    <span class="eyebrow">Proje Başlat</span>
+    <h1>Hadi projenizi<br /><em>hayata geçirelim.</em></h1>
+    <p>Bir fikir, bir brief ya da sadece bir soru yeterli. Birlikte neye ihtiyacınız olduğunu bulalım ve harekete geçelim.</p>
+
+    <div class="cat-label">Çalışma alanlarımız</div>
+    <div class="cat-chips">
+      <div class="cat-chip c-lime"><span></span>UI/UX Tasarım</div>
+      <div class="cat-chip c-coral"><span></span>3D Görselleştirme</div>
+      <div class="cat-chip c-violet"><span></span>Yapay Zekâ</div>
+      <div class="cat-chip c-sky"><span></span>Ürün Tasarımı</div>
+    </div>
+
+    <div class="contact-details">
+      <a href="mailto:info@studiobleur.com">info@studiobleur.com</a>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM -->
+  <div class="right-panel">
+    <form class="form-grid" id="contactForm" novalidate>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Ad</label>
+          <input type="text" name="ad" id="fAd" placeholder="Adınız" required/>
+        </div>
+        <div class="field">
+          <label>Soyad</label>
+          <input type="text" name="soyad" id="fSoyad" placeholder="Soyadınız" required/>
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Telefon</label>
+          <input type="tel" name="telefon" id="fTel" placeholder="+90 555 000 00 00"/>
+        </div>
+        <div class="field">
+          <label>E-posta</label>
+          <input type="email" name="eposta" id="fEmail" placeholder="ornek@mail.com" required/>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Hangi alanda çalışmak istiyorsunuz?</label>
+        <div class="cat-select" id="catSelect">
+          <label class="cat-opt" style="--cat-c: var(--lime)">
+            <input type="checkbox" name="kategori" value="UI/UX Tasarım"/>
+            <span class="co-dot" style="background:var(--lime)"></span>
+            <span class="co-label">UI/UX Tasarım</span>
+            <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </label>
+          <label class="cat-opt" style="--cat-c: var(--coral)">
+            <input type="checkbox" name="kategori" value="3D Görselleştirme"/>
+            <span class="co-dot" style="background:var(--coral)"></span>
+            <span class="co-label">3D Görselleştirme</span>
+            <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </label>
+          <label class="cat-opt" style="--cat-c: var(--violet)">
+            <input type="checkbox" name="kategori" value="Yapay Zekâ"/>
+            <span class="co-dot" style="background:var(--violet)"></span>
+            <span class="co-label">Yapay Zekâ</span>
+            <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </label>
+          <label class="cat-opt" style="--cat-c: var(--sky)">
+            <input type="checkbox" name="kategori" value="Ürün Tasarımı"/>
+            <span class="co-dot" style="background:var(--sky)"></span>
+            <span class="co-label">Ürün Tasarımı</span>
+            <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Mesajınız</label>
+        <textarea name="mesaj" id="fMsg" placeholder="Projenizi kısaca anlatın — ne yapmak istiyorsunuz, ne zaman başlamayı düşünüyorsunuz?" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Dosya ekle <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--faint)">(opsiyonel — brief, görseller, referanslar)</span></label>
+        <div class="file-drop" id="fileDrop" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.zip,.sketch,.fig"/>
+          <div class="fd-icon">📎</div>
+          <div class="fd-text">Dosyaları buraya sürükleyin veya <strong>seçin</strong></div>
+          <div class="fd-text" style="font-size:.72rem;opacity:.6">PDF, DOC, PNG, JPG, ZIP, Figma — maks. 10MB</div>
+        </div>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">Gönder →</button>
+
+      <div class="success-msg" id="successMsg">
+        <div class="sm-icon">✉️</div>
+        <h3>Mesajınız iletildi!</h3>
+        <p>En kısa sürede <strong>info@studiobleur.com</strong> adresinden size döneceğiz. Heyecanla bekliyoruz.</p>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<script>
+(function(){
+  // Category checkbox toggle
+  document.querySelectorAll('.cat-opt').forEach(function(opt){
+    var cb = opt.querySelector('input[type="checkbox"]');
+    cb.addEventListener('change', function(){
+      opt.classList.toggle('selected', cb.checked);
+    });
+  });
+
+  // File drag & drop
+  var fileDrop = document.getElementById('fileDrop');
+  var fileInput = document.getElementById('fileInput');
+  var fileList  = document.getElementById('fileList');
+  var selectedFiles = [];
+
+  fileDrop.addEventListener('dragover', function(e){ e.preventDefault(); fileDrop.style.borderColor='rgba(190,240,120,.5)'; });
+  fileDrop.addEventListener('dragleave', function(){ fileDrop.style.borderColor=''; });
+  fileDrop.addEventListener('drop', function(e){ e.preventDefault(); fileDrop.style.borderColor=''; addFiles(e.dataTransfer.files); });
+  fileInput.addEventListener('change', function(){ addFiles(fileInput.files); fileInput.value=''; });
+
+  function addFiles(files){
+    Array.from(files).forEach(function(f){
+      if(!selectedFiles.find(function(x){return x.name===f.name;})) selectedFiles.push(f);
+    });
+    renderFiles();
+  }
+
+  function renderFiles(){
+    fileList.innerHTML = selectedFiles.map(function(f,i){
+      return '<div class="file-item">'
+        + '📄 ' + f.name
+        + '<button type="button" data-i="'+i+'" title="Kaldır">×</button>'
+        + '</div>';
+    }).join('');
+    fileList.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        selectedFiles.splice(parseInt(btn.dataset.i),1);
+        renderFiles();
+      });
+    });
+  }
+
+  // Form submit — mailto
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var ad    = document.getElementById('fAd').value.trim();
+    var soyad = document.getElementById('fSoyad').value.trim();
+    var tel   = document.getElementById('fTel').value.trim();
+    var email = document.getElementById('fEmail').value.trim();
+    var msg   = document.getElementById('fMsg').value.trim();
+
+    if(!ad || !soyad || !email || !msg){
+      alert('Lütfen ad, soyad, e-posta ve mesaj alanlarını doldurun.');
+      return;
+    }
+
+    var cats = Array.from(document.querySelectorAll('.cat-opt input:checked')).map(function(c){return c.value;});
+    var fileNames = selectedFiles.map(function(f){return f.name;}).join(', ');
+
+    var body = [
+      'Ad Soyad: ' + ad + ' ' + soyad,
+      'Telefon: ' + (tel || '—'),
+      'E-posta: ' + email,
+      'Çalışma Alanı: ' + (cats.length ? cats.join(', ') : '—'),
+      '',
+      'Mesaj:',
+      msg,
+      fileNames ? '\nEklenen dosyalar: ' + fileNames : ''
+    ].join('\n');
+
+    var subject = encodeURIComponent('Proje Talebi — ' + ad + ' ' + soyad + (cats.length ? ' (' + cats[0] + ')' : ''));
+    var bodyEnc = encodeURIComponent(body);
+
+    var btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.textContent = 'Açılıyor…';
+
+    window.location.href = 'mailto:info@studiobleur.com?subject=' + subject + '&body=' + bodyEnc;
+
+    setTimeout(function(){
+      document.getElementById('successMsg').style.display = 'flex';
+      btn.style.display = 'none';
+    }, 800);
+  });
+})();
+</script>
+</body>
+</html>
