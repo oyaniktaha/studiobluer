@@ -6,7 +6,7 @@
 <title>Proje Başlat — studiobleur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root {
   --bg: #070709;
@@ -22,8 +22,8 @@
   --violet: #9b7bff;
   --sky: #5bc8f5;
   --ease: cubic-bezier(0.23,1,0.32,1);
-  --display: 'Syne', sans-serif;
-  --body: 'DM Sans', sans-serif;
+  --display: 'Bricolage Grotesque', 'Space Grotesk', sans-serif;
+  --body: 'Space Grotesk', -apple-system, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -48,14 +48,15 @@ body {
 .topbar .logo {
   font-family: var(--display);
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
   color: var(--text);
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.topbar .logo .dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; display: inline-block; }
+.topbar .logo .dot { width: 9px; height: 9px; background: var(--lime); border-radius: 50%; display: inline-block; }
 .topbar .back {
   font-size: .85rem;
   color: var(--muted);
@@ -105,10 +106,10 @@ body {
 }
 .left-panel h1 {
   font-family: var(--display);
-  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
   font-weight: 800;
-  letter-spacing: -.04em;
-  line-height: 1.0;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
   margin-bottom: 24px;
   text-wrap: balance;
 }
@@ -362,12 +363,13 @@ body {
   .cat-select { grid-template-columns: 1fr 1fr; }
 }
 </style>
+<link id="gfont-Space-Grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap">
 </head>
 <body>
 
 <!-- TOPBAR -->
 <header class="topbar">
-  <a href="studiolume.html" class="logo"><span class="dot"></span>studiobleur</a>
+  <a href="studiolume.html" class="logo" style="font-family: &quot;Space Grotesk&quot;"><span class="dot"></span>studiobleur</a>
   <a href="studiolume.html" class="back">← Geri dön</a>
 </header>
 
@@ -377,7 +379,7 @@ body {
   <!-- LEFT -->
   <div class="left-panel">
     <span class="eyebrow">Proje Başlat</span>
-    <h1>Hadi projenizi<br /><em>hayata geçirelim.</em></h1>
+    <h1 style="font-family: &quot;Space Grotesk&quot;">Hadi projenizi<br /><em>hayata geçirelim.</em></h1>
     <p>Bir fikir, bir brief ya da sadece bir soru yeterli. Birlikte neye ihtiyacınız olduğunu bulalım ve harekete geçelim.</p>
 
     <div class="cat-label">Çalışma alanlarımız</div>
