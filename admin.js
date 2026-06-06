@@ -200,11 +200,13 @@
 
         <div class="admin-foot">
           <div class="left">
-            <button class="btn-sm solid" id="adminPublish">⬇ Yayınla (dışa aktar)</button>
+            <button class="btn-sm solid" id="adminPublish">🚀 Yayınla (GitHub'a otomatik)</button>
+            <button class="btn-sm" id="adminDownload">⬇ Dosya indir</button>
             <button class="btn-sm" id="adminImport">İçe aktar</button>
             <input type="file" id="adminImportFile" accept=".js,.json,application/json,text/javascript" hidden />
           </div>
           <div class="right">
+            <button class="btn-sm" id="adminToken">GitHub Token</button>
             <button class="btn-sm" id="adminPin2">Şifre değiştir</button>
             <button class="btn-sm" id="adminReset">Yayındakine dön</button>
           </div>
@@ -257,6 +259,14 @@
     updateSubcatOptions(activeCat, null);
     overlay.querySelector("#adminClose").addEventListener("click", close);
     overlay.querySelector("#adminPublish").addEventListener("click", publish);
+    overlay.querySelector("#adminDownload").addEventListener("click", downloadOnly);
+    overlay.querySelector("#adminToken").addEventListener("click", () => {
+      const cur = localStorage.getItem(GH_TOKEN_KEY);
+      const t = prompt(cur ? "Kayıtlı token var. Yeni token girin (boş bırakırsanız silinir):" : "GitHub Personal Access Token girin:", "");
+      if (t === null) return;
+      if (t.trim() === "") { localStorage.removeItem(GH_TOKEN_KEY); showToast("Token silindi."); }
+      else { localStorage.setItem(GH_TOKEN_KEY, t.trim()); showToast("Token kaydedildi."); }
+    });
     overlay.querySelector("#adminReset").addEventListener("click", () => {
       if (confirm("Tarayıcınızdaki düzenlemeler silinip yayındaki işler gösterilsin mi?")) {
         W.resetToPublished();
@@ -587,11 +597,83 @@
   }
 
   /* ---------- publish / import / pin ---------- */
-  function publish() {
+  var GH_OWNER = "oyaniktaha";
+  var GH_REPO = "studiobluer";
+  var GH_BRANCH = "main";
+  var GH_PATH = "works-data.js";
+  var GH_TOKEN_KEY = "studiolume_gh_token";
+
+  function buildContent() {
     const works = W.load();
-    const content =
-      "/* studiolume — YAYINLANMIŞ İŞLER (yönetim panelinden üretildi) */\n" +
-      "window.STUDIOLUME_WORKS = " + JSON.stringify(works, null, 2) + ";\n";
+    return "/* studiolume — YAYINLANMIŞ İŞLER (yönetim panelinden üretildi) */\n" +
+           "window.STUDIOLUME_WORKS = " + JSON.stringify(works, null, 2) + ";\n";
+  }
+
+  // UTF-8 güvenli base64 (Türkçe karakterler için)
+  function utf8ToBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function getToken() {
+    let t = localStorage.getItem(GH_TOKEN_KEY);
+    if (!t) {
+      t = prompt("GitHub Personal Access Token girin (sadece bu tarayıcıda saklanır):");
+      if (t) { t = t.trim(); localStorage.setItem(GH_TOKEN_KEY, t); }
+    }
+    return t;
+  }
+
+  async function publish() {
+    const token = getToken();
+    if (!token) { showToast("Token girilmedi — yayınlanamadı."); return; }
+
+    showToast("GitHub'a gönderiliyor…");
+    const content = buildContent();
+    const apiBase = "https://api.github.com/repos/" + GH_OWNER + "/" + GH_REPO + "/contents/" + GH_PATH;
+    const headers = {
+      "Authorization": "token " + token,
+      "Accept": "application/vnd.github+json"
+    };
+
+    try {
+      // mevcut dosyanın SHA'sını al
+      let sha = null;
+      const getRes = await fetch(apiBase + "?ref=" + GH_BRANCH, { headers });
+      if (getRes.status === 200) {
+        const data = await getRes.json();
+        sha = data.sha;
+      } else if (getRes.status === 401) {
+        localStorage.removeItem(GH_TOKEN_KEY);
+        showToast("Token geçersiz — silindi, tekrar deneyin.");
+        return;
+      }
+
+      // yeni içeriği yaz (commit)
+      const putRes = await fetch(apiBase, {
+        method: "PUT",
+        headers: headers,
+        body: JSON.stringify({
+          message: "İşler güncellendi — " + new Date().toLocaleString("tr-TR"),
+          content: utf8ToBase64(content),
+          branch: GH_BRANCH,
+          sha: sha || undefined
+        })
+      });
+
+      if (putRes.ok) {
+        showToast("✓ Yayınlandı! 30 sn içinde canlıda.");
+      } else {
+        const err = await putRes.json().catch(() => ({}));
+        showToast("Hata: " + (err.message || putRes.status) + " — dosya indiriliyor.");
+        downloadFallback(content);
+      }
+    } catch (e) {
+      showToast("Bağlantı hatası — dosya indiriliyor.");
+      downloadFallback(content);
+    }
+  }
+
+  function downloadFallback(content) {
     const blob = new Blob([content], { type: "text/javascript" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -600,7 +682,11 @@
     a.click();
     a.remove();
     URL.revokeObjectURL(a.href);
-    showToast("works-data.js indirildi — siteyle yayınlayın.");
+  }
+
+  function downloadOnly() {
+    downloadFallback(buildContent());
+    showToast("works-data.js indirildi.");
   }
 
   function importFile(e) {
