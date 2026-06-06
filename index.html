@@ -36,9 +36,10 @@
     <a href="#surec">Süreç</a>
     <a href="#hakkimizda">Stüdyo</a>
     <a href="#sss">SSS</a>
+    <a href="bize-ulasin.html">İletişim</a>
   </div>
   <div class="nav-cta">
-    <a href="#iletisim" class="btn btn-primary">Proje başlat <span class="arr">→</span></a>
+    <a href="iletisim.html" class="btn btn-primary">Proje başlat <span class="arr">→</span></a>
   </div>
 </nav>
 
@@ -384,6 +385,7 @@
 <script src="works-data.js"></script>
 <script src="portfolio.js"></script>
 <script src="team-data.js"></script>
+<script src="contact-data.js"></script>
 <script src="team.js"></script>
 <script src="main.js"></script>
 <script src="admin.js"></script>
@@ -396,5 +398,16 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="tweaks-app.jsx"></script>
+<!-- Admin kısayol butonu — sadece site sahibi bilir -->
+<button id="adminShortcutBtn" title="Yönetim" onclick="window.studiobleurAdmin&&window.studiobleurAdmin.open()" style="
+  position:fixed; bottom:18px; left:18px; z-index:9000;
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.18); font-size:15px; cursor:pointer;
+  display:grid; place-items:center; transition:all .3s;
+  backdrop-filter:blur(8px); line-height:1;
+" onmouseenter="this.style.background='rgba(190,240,120,0.15)';this.style.color='#bef078';this.style.borderColor='rgba(190,240,120,0.3)'"
+   onmouseleave="this.style.background='rgba(255,255,255,0.04)';this.style.color='rgba(255,255,255,0.18)';this.style.borderColor='rgba(255,255,255,0.08)'">⚙</button>
+
 </body>
 </html>
