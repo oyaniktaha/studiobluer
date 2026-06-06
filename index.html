@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>studiobleur — tasarım · 3D · yapay zekâ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Space+Grotesk:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#0b0b0c"/>
+    <circle cx="50" cy="42" r="16" fill="#bef078"/>
+    <text x="50" y="78" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f3f2ec" text-anchor="middle" letter-spacing="-0.5">studiobleur</text>
+  </svg>
+</template>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a href="#top" class="logo"><span class="dot"></span>studiobleur</a>
+  <div class="nav-links">
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#surec">Süreç</a>
+    <a href="#hakkimizda">Stüdyo</a>
+    <a href="#sss">SSS</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#iletisim" class="btn btn-primary">Proje başlat <span class="arr">→</span></a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top" data-screen-label="Hero">
+  <div class="hero-sticky">
+    <div class="hero-fallback"></div>
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+
+    <div class="side-menu">
+      <div class="menu-icon"><span></span><span></span><span></span></div>
+      <div class="vline"></div>
+      <div class="vert">studiobleur</div>
+    </div>
+
+    <div class="wrap hero-inner hero-phase phase-a" id="phaseA">
+      <span class="eyebrow hero-eyebrow">UI/UX · 3D GÖRSELLEŞTİRME · YAPAY ZEKÂ</span>
+      <h1 class="hero-title" id="heroTitle">studiobleur</h1>
+      <div class="hero-bottom">
+        <p class="hero-sub">Tasarım, üç boyutlu görselleştirme ve yapay zekânın buluştuğu yaratıcı stüdyo. Markaları ufkun ötesine taşıyoruz.</p>
+        <div class="hero-actions">
+          <a href="#iletisim" class="btn btn-primary">Bir proje başlat <span class="arr">→</span></a>
+          <a href="#hizmetler" class="btn btn-ghost">Ne yapıyoruz?</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-phase phase-b" id="phaseB">
+      <h2 class="phase-title">Ufkun ötesini<br /><em>tasarlıyoruz.</em></h2>
+    </div>
+
+    <div class="scroll-progress">
+      <div class="scroll-text">scroll</div>
+      <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+      <div class="section-counter" id="secCount">01 / 03</div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true" style="font-family: &quot;Bricolage Grotesque&quot;">
+  <div class="marquee-track">
+    <span>Arayüz Tasarımı</span>
+    <span class="dim">3D Render</span>
+    <span>Marka Deneyimi</span>
+    <span class="dim">Üretken YZ</span>
+    <span>Ürün Görselleştirme</span>
+    <span class="dim">Prototipleme</span>
+    <span>Arayüz Tasarımı</span>
+    <span class="dim">3D Render</span>
+    <span>Marka Deneyimi</span>
+    <span class="dim">Üretken YZ</span>
+    <span>Ürün Görselleştirme</span>
+    <span class="dim">Prototipleme</span>
+  </div>
+</div>
+
+<!-- ================= SERVICES (cosmos-style interactive field) ================= -->
+<section class="section cosmos-section" id="hizmetler" data-screen-label="Hizmetler">
+  <div class="wrap cosmos-head">
+    <span class="eyebrow">Hizmetler</span>
+    <h2>Dört disiplin,<br />tek bir <span class="accent">vizyon</span>.</h2>
+    <p>Alanı sürükleyin, keşfedin. Bir disipline dokunun, işleri görün.</p>
+  </div>
+
+  <div class="cosmos-field" id="cosmosField" aria-label="Sürüklenebilir hizmet alanı">
+    <div class="cosmos-plane" id="cosmosPlane">
+
+      <!-- discipline tiles -->
+      <button class="ctile ctile--disc" data-service="uiux" data-x="-360" data-y="-110" data-depth="1.0" style="--c: var(--lime);">
+        <span class="ctile-num">01 — UI/UX</span>
+        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg></span>
+        <span class="ctile-title">Arayüz &amp;<br />Deneyim Tasarımı</span>
+        <span class="ctile-cue">Projeleri gör →</span>
+      </button>
+
+      <button class="ctile ctile--disc" data-service="3d" data-x="-110" data-y="160" data-depth="1.0" style="--c: var(--coral);">
+        <span class="ctile-num">02 — 3D</span>
+        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg></span>
+        <span class="ctile-title">3D Modelleme &amp;<br />Görselleştirme</span>
+        <span class="ctile-cue">Projeleri gör →</span>
+      </button>
+
+      <button class="ctile ctile--disc" data-service="ai" data-x="180" data-y="-150" data-depth="1.0" style="--c: var(--violet);">
+        <span class="ctile-num">03 — AI</span>
+        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>
+        <span class="ctile-title">Yapay Zekâ<br />Çözümleri</span>
+        <span class="ctile-cue">Projeleri gör →</span>
+      </button>
+
+      <button class="ctile ctile--disc" data-service="product" data-x="470" data-y="160" data-depth="1.0" style="--c: var(--sky);">
+        <span class="ctile-num">04 — PRODUCT</span>
+        <span class="ctile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12m0 9V12m9-4.5L12 12"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg></span>
+        <span class="ctile-title">Ürün Tasarımı<br />&amp; Stratejisi</span>
+        <span class="ctile-cue">Projeleri gör →</span>
+      </button>
+
+      <!-- satellite keyword chips (parallax depth varies) -->
+      <span class="ctile ctile--chip" data-x="-540" data-y="120" data-depth="1.5">Araştırma</span>
+      <span class="ctile ctile--chip" data-x="-150" data-y="-258" data-depth="1.8">Wireframe</span>
+      <span class="ctile ctile--chip" data-x="250" data-y="-264" data-depth="1.6">Render</span>
+      <span class="ctile ctile--chip" data-x="-580" data-y="-70" data-depth="2.0">Prototip</span>
+      <span class="ctile ctile--chip" data-x="720" data-y="70" data-depth="1.7">WebGL</span>
+      <span class="ctile ctile--chip" data-x="612" data-y="-60" data-depth="1.9">Otomasyon</span>
+      <span class="ctile ctile--chip" data-x="-360" data-y="300" data-depth="1.4">Tasarım Sistemi</span>
+      <span class="ctile ctile--chip" data-x="556" data-y="-214" data-depth="2.1">Üretken YZ</span>
+      <span class="ctile ctile--chip" data-x="96" data-y="330" data-depth="1.5">Animasyon</span>
+      <span class="ctile ctile--chip" data-x="-700" data-y="258" data-depth="2.2">Motion</span>
+      <span class="ctile ctile--chip" data-x="760" data-y="300" data-depth="2.0">Asistanlar</span>
+      <span class="ctile ctile--chip" data-x="200" data-y="370" data-depth="1.8">Yol Haritası</span>
+      <span class="ctile ctile--chip" data-x="-150" data-y="380" data-depth="1.6">Ürün Stratejisi</span>
+      <span class="ctile ctile--chip" data-x="170" data-y="-340" data-depth="2.0">MVP</span>
+
+      <!-- decorative star dots -->
+      <span class="cdot" data-x="-300" data-y="60" data-depth="2.6"></span>
+      <span class="cdot" data-x="320" data-y="-180" data-depth="3.0"></span>
+      <span class="cdot" data-x="640" data-y="-30" data-depth="2.4"></span>
+      <span class="cdot" data-x="-480" data-y="-260" data-depth="2.8"></span>
+      <span class="cdot" data-x="40" data-y="-60" data-depth="3.2"></span>
+      <span class="cdot" data-x="-120" data-y="280" data-depth="2.5"></span>
+      <span class="cdot" data-x="820" data-y="200" data-depth="2.9"></span>
+    </div>
+
+    <div class="cosmos-hint" id="cosmosHint">↔ sürükle</div>
+    <div class="cosmos-cursor" id="cosmosCursor"><span>sürükle</span></div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="section stats" data-screen-label="İstatistik">
+  <div class="wrap stats-grid">
+    <div class="stat reveal" data-d="0"><div class="big" data-count="120" data-suf="+">0</div><div class="lbl">tamamlanan proje</div></div>
+    <div class="stat reveal" data-d="1"><div class="big" data-count="40" data-suf="+">0</div><div class="lbl">mutlu müşteri</div></div>
+    <div class="stat reveal" data-d="2"><div class="big" data-count="9" data-suf=" yıl">0</div><div class="lbl">stüdyo deneyimi</div></div>
+    <div class="stat reveal" data-d="3"><div class="big" data-count="14" data-suf="">0</div><div class="lbl">farklı ülkeden iş</div></div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="section" id="surec" data-screen-label="Süreç">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Çalışma süreci</span>
+      <h2>Kaostan <span class="accent">netliğe</span>.</h2>
+      <p>Şeffaf, döngüsel ve işbirlikçi bir süreç. Her aşamada ne yaptığımızı görür, yön verirsiniz.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step reveal" data-d="0"><div class="step-n">01 / KEŞİF</div><h4>Anlamak</h4><p>Hedefleri, kullanıcıları ve kısıtları dinliyoruz. Doğru soruları sorarak problemi keskinleştiriyoruz.</p></div>
+      <div class="step reveal" data-d="1"><div class="step-n">02 / KONSEPT</div><h4>Tasarlamak</h4><p>Yön, dil ve sistemleri belirliyoruz. Hızlı prototiplerle fikirleri erkenden test ediyoruz.</p></div>
+      <div class="step reveal" data-d="2"><div class="step-n">03 / ÜRETİM</div><h4>İnşa etmek</h4><p>Pikseli, modeli ve modeli üretiyoruz. Detaylar, animasyon ve performans burada parlıyor.</p></div>
+      <div class="step reveal" data-d="3"><div class="step-n">04 / LANSMAN</div><h4>Yayınlamak</h4><p>Teslim eder, ölçer ve iyileştiririz. Lansman bir bitiş değil, büyümenin başlangıcıdır.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT / TEAM ================= -->
+<section class="section" id="hakkimizda" data-screen-label="Stüdyo">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <span class="eyebrow">Stüdyo</span>
+      <h2 style="margin-top:20px;">Küçük ekip,<br />büyük ışık.</h2>
+      <p>studiobleur, farklı disiplinlerden gelen tasarımcı, 3D sanatçısı ve mühendislerden oluşan çevik bir kolektif. Her projeye merakla, zanaatkâr titizliğiyle ve teknolojiyi kucaklayan bir bakışla yaklaşıyoruz.</p>
+      <p>Ajans bürokrasisi yok; doğrudan işi yapan insanlarla çalışırsınız.</p>
+    </div>
+    <!-- 2 büyük portre kartı (team.js tarafından doldurulur) -->
+    <div class="team-cards-v2" id="teamCards" style="font-weight: 700"></div>
+  </div>
+</section>
+
+<!-- TEAM BIO MODAL -->
+<div class="team-modal" id="teamModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="team-modal-inner" style="font-weight: 700; height: 880px; width: 1020px; padding: 0px">
+    <button class="team-modal-close" id="teamModalClose" aria-label="Kapat">×</button>
+    <div class="tm-photo-wrap" id="teamModalPhotoWrap"></div>
+    <div class="tm-body" id="teamModalBody" style="width: 480px; font-weight: 500; padding: 40px 44px; flex-direction: column; align-items: center; justify-content: flex-start; gap: 16px"></div>
+  </div>
+</div>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section" data-screen-label="Yorumlar">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Müşteri yorumları</span>
+      <h2>Birlikte çalıştığımız <span class="accent">ekipler</span>.</h2>
+    </div>
+    <div class="t-grid">
+      <figure class="quote reveal" data-d="0">
+        <div class="mark">"</div>
+        <p>Arayüzümüzü baştan kurguladılar ve dönüşüm oranımız iki ay içinde belirgin şekilde arttı. Süreç boyunca her şey şeffaftı.</p>
+        <figcaption class="who"><image-slot id="quote-1" class="aph" style="width:44px;height:44px;display:block" shape="circle" placeholder="foto"></image-slot><div><div class="n">Selin Yıldız</div><div class="r">Ürün Direktörü, Fintech</div></div></figcaption>
+      </figure>
+      <figure class="quote reveal" data-d="1">
+        <div class="mark">"</div>
+        <p>3D ürün görsellerimiz fuarda en çok konuşulan şeydi. Fotogerçekçilik beklentimizin çok ötesindeydi.</p>
+        <figcaption class="who"><image-slot id="quote-2" class="aph" style="width:44px;height:44px;display:block" shape="circle" placeholder="foto"></image-slot><div><div class="n">Kerem Aydın</div><div class="r">Pazarlama Lideri, Donanım</div></div></figcaption>
+      </figure>
+      <figure class="quote reveal" data-d="2">
+        <div class="mark">"</div>
+        <p>Kurdukları yapay zekâ asistanı destek ekibimizin yükünü yarı yarıya azalttı. Hem hızlı hem de gerçekten işe yaradı.</p>
+        <figcaption class="who"><image-slot id="quote-3" class="aph" style="width:44px;height:44px;display:block" shape="circle" placeholder="foto"></image-slot><div><div class="n">Asya Demir</div><div class="r">Operasyon, SaaS</div></div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="sss" data-screen-label="SSS">
+  <div class="wrap faq-layout">
+    <div class="section-head reveal" style="margin-bottom:0;">
+      <span class="eyebrow">SSS</span>
+      <h2>Merak<br />edilenler.</h2>
+    </div>
+    <div class="faq-list reveal" data-d="1">
+      <div class="faq-item">
+        <button class="faq-q">Bir proje ne kadar sürer?<span class="pm"></span></button>
+        <div class="faq-a"><p>Kapsama göre değişir. Bir landing page 2–3 hafta, kapsamlı bir ürün veya 3D görselleştirme paketi 6–10 hafta sürebilir. İlk görüşmede net bir takvim paylaşıyoruz.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Tek bir hizmet için de çalışır mısınız?<span class="pm"></span></button>
+        <div class="faq-a"><p>Elbette. Sadece UI/UX, sadece 3D ya da sadece yapay zekâ tarafında destek alabilirsiniz. Üç disiplini birleştirdiğimizde ortaya çıkan sinerji ise ekstra bir avantaj.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Fiyatlandırma nasıl işliyor?<span class="pm"></span></button>
+        <div class="faq-a"><p>Proje bazlı sabit fiyat veya aylık retainer modeliyle çalışıyoruz. Kapsamı netleştirdikten sonra şeffaf bir teklif sunuyoruz — sürpriz maliyet yok.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Mevcut ekibimizle entegre olur musunuz?<span class="pm"></span></button>
+        <div class="faq-a"><p>Evet. İç ekibinizin bir uzantısı gibi çalışır; kullandığınız araçlara (Figma, Slack, Git vb.) uyum sağlar ve süreci birlikte yürütürüz.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Lansmandan sonra destek var mı?<span class="pm"></span></button>
+        <div class="faq-a"><p>Var. İsteğe bağlı bakım ve iyileştirme paketleriyle yayın sonrası da yanınızdayız. Veriye dayalı olarak ürünü büyütmeye devam ediyoruz.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section cta" id="iletisim" data-screen-label="İletişim">
+  <div class="hero-bg">
+    <div class="orb orb-1" style="top:-200px;"></div>
+    <div class="orb orb-2" style="bottom:-200px;"></div>
+  </div>
+  <div class="wrap cta-inner">
+    <div class="reveal">
+      <h2>Hadi birlikte<br /><em>parlayalım</em>.</h2>
+      <p>Aklınızdaki proje ister bir fikir ister hazır bir brief olsun — kahve eşliğinde konuşalım.</p>
+      <div class="cta-actions">
+        <a href="mailto:merhaba@studiobleur.studio" class="btn btn-primary">Proje başlat <span class="arr">→</span></a>
+        <a href="#" class="btn btn-ghost">Sunum dosyasını indir</a>
+      </div>
+      <br />
+      <a href="mailto:merhaba@studiobleur.studio" class="mail">merhaba@studiobleur.studio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECT MODAL ================= -->
+<div class="modal-overlay" id="projectModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Kapat">×</button>
+
+    <!-- UI/UX -->
+    <div class="modal-panel" data-panel="uiux" style="--svc-c: var(--lime);">
+      <div class="modal-head">
+        <span class="eyebrow">01 — UI/UX</span>
+        <h3 id="modalTitle">Arayüz &amp; Deneyim işleri</h3>
+        <p>Bu disiplinde yaptığımız seçili işler.</p>
+      </div>
+      <div class="proj-grid" data-grid="uiux"></div>
+      <div class="proj-empty" data-empty="uiux" hidden>Bu kategoride henüz iş yok.</div>
+    </div>
+
+    <!-- 3D -->
+    <div class="modal-panel" data-panel="3d" style="--svc-c: var(--coral);">
+      <div class="modal-head">
+        <span class="eyebrow">02 — 3D</span>
+        <h3>3D Görselleştirme işleri</h3>
+        <p>Render, animasyon ve etkileşimli 3D projelerimiz.</p>
+      </div>
+      <div class="proj-grid" data-grid="3d"></div>
+      <div class="proj-empty" data-empty="3d" hidden>Bu kategoride henüz iş yok.</div>
+    </div>
+
+    <!-- AI -->
+    <div class="modal-panel" data-panel="ai" style="--svc-c: var(--violet);">
+      <div class="modal-head">
+        <span class="eyebrow">03 — AI</span>
+        <h3>Yapay Zekâ işleri</h3>
+        <p>Üretken yapay zekâ ve otomasyon çözümlerimiz.</p>
+      </div>
+      <div class="proj-grid" data-grid="ai"></div>
+      <div class="proj-empty" data-empty="ai" hidden>Bu kategoride henüz iş yok.</div>
+    </div>
+
+    <!-- Product -->
+    <div class="modal-panel" data-panel="product" style="--svc-c: var(--sky);">
+      <div class="modal-head">
+        <span class="eyebrow">04 — PRODUCT</span>
+        <h3>Ürün Tasarımı &amp; Stratejisi işleri</h3>
+        <p>Fikirden lansmana; ürün stratejisi, yol haritası ve uçtan uca ürün tasarımı projelerimiz.</p>
+      </div>
+      <div class="proj-grid" data-grid="product"></div>
+      <div class="proj-empty" data-empty="product" hidden>Bu kategoride henüz iş yok.</div>
+    </div>
+
+    <div class="modal-foot">
+      <p>Bir projeyi yakından konuşmak ister misiniz?</p>
+      <a href="#iletisim" class="btn btn-primary" data-close-modal>İletişime geç <span class="arr">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer data-screen-label="Footer">
+  <div class="footer-top">
+    <div>
+      <a href="#top" class="logo"><span class="dot"></span>studiobleur</a>
+      <p style="color:var(--muted);max-width:300px;margin-top:18px;font-size:0.95rem;">Tasarım, üç boyut ve yapay zekânın buluştuğu yaratıcı stüdyo.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="fcol">
+        <h5>Hizmetler</h5>
+        <a href="#hizmetler">UI/UX Tasarım</a>
+        <a href="#hizmetler">3D Görselleştirme</a>
+        <a href="#hizmetler">Yapay Zekâ</a>
+        <a href="#hizmetler">Ürün Tasarımı</a>
+      </div>
+      <div class="fcol">
+        <h5>Stüdyo</h5>
+        <a href="#hakkimizda">Hakkımızda</a>
+        <a href="#surec">Süreç</a>
+        <a href="#sss">SSS</a>
+      </div>
+      <div class="fcol">
+        <h5>Sosyal</h5>
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2026 studiobleur. Tüm hakları saklıdır.</span>
+    <span>Türkiye · uzaktan, her yerden</span>
+  </div>
+</footer>
+
+<script src="image-slot.js"></script>
+<script src="works-data.js"></script>
+<script src="portfolio.js"></script>
+<script src="team-data.js"></script>
+<script src="team.js"></script>
+<script src="main.js"></script>
+<script src="cosmos.js"></script>
+<script src="admin.js"></script>
+<script type="module" src="hero3d.js"></script>
+
+<!-- Tweaks island (React) -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+</body>
+</html>

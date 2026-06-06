@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Proje — studiobleur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="proje.css" />
+</head>
+<body class="proje-body">
+
+<!-- NAV -->
+<nav class="pnav">
+  <a href="isler.html" class="pnav-back" id="backBtn">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Geri
+  </a>
+  <a href="studiolume.html" class="logo"><span class="dot"></span>studiobleur</a>
+  <span class="pnav-cat" id="pnavCat"></span>
+</nav>
+
+<!-- HERO VIDEO -->
+<section class="proje-hero">
+  <div class="proje-hero-media" id="heroMedia">
+    <div class="hero-ph" id="heroPh">
+      <span class="ph-lbl">hero video / gif bekleniyor</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT INFO -->
+<section class="proje-info">
+  <div class="wrap">
+    <div class="proje-meta-row">
+      <span class="eyebrow" id="projeCat"></span>
+      <span class="proje-year" id="projeYear" hidden></span>
+    </div>
+    <h1 class="proje-title" id="projeTitle">—</h1>
+    <div class="proje-tags" id="projeTags"></div>
+    <p class="proje-desc" id="projeDesc"></p>
+  </div>
+</section>
+
+<!-- GALLERY HEADER -->
+<div class="proje-divider">
+  <div class="wrap"><span class="eyebrow" id="galleryLabel">Galeri</span></div>
+</div>
+
+<!-- GALLERY -->
+<section class="proje-gallery">
+  <div class="wrap">
+    <p class="g-empty" id="galleryEmpty">Bu proje için henüz galeri eklenmemiş.</p>
+    <div class="g-frames" id="galleryFrames"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="proje-foot">
+  <div class="wrap">
+    <a href="isler.html" class="btn btn-ghost" id="footBack">← Tüm işlere dön</a>
+    <a href="studiolume.html" class="logo pf-logo"><span class="dot"></span>studiobleur</a>
+  </div>
+</footer>
+
+<!-- Floating admin edit button (visible only when authenticated) -->
+<button class="proje-admin-btn" id="projeEditBtn" hidden>✏ Düzenle</button>
+
+<script src="works-data.js"></script>
+<script src="portfolio.js"></script>
+<script src="proje.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

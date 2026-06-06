@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>İşler — studiobleur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="isler.css" />
+</head>
+<body class="isler-body">
+
+<!-- top bar -->
+<nav class="isler-nav">
+  <a href="studiolume.html#hizmetler" class="isler-back"><span class="bk">←</span> studiobleur</a>
+  <div class="isler-switch" id="catSwitch">
+    <a href="isler.html?kategori=uiux" data-cat="uiux">UI/UX</a>
+    <a href="isler.html?kategori=3d" data-cat="3d">3D</a>
+    <a href="isler.html?kategori=ai" data-cat="ai">AI</a>
+    <a href="isler.html?kategori=product" data-cat="product">Product</a>
+  </div>
+</nav>
+
+<!-- header -->
+<header class="isler-head">
+  <span class="isler-eyebrow" id="catEyebrow">01 — UI/UX</span>
+  <h1 class="isler-title" id="catTitle">Arayüz &amp; Deneyim</h1>
+  <div class="isler-sub">
+    <p id="catDesc">Bu disiplinde yaptığımız seçili işler.</p>
+    <div class="isler-count"><b id="catCount">0</b> proje</div>
+  </div>
+</header>
+
+<p class="isler-demo-note" id="demoNote" hidden>Örnek görünüm — gerçek işleriniz yönetim panelinden eklenip yayınlanınca burada listelenir.</p>
+
+<!-- subcategory card grid (JS tarafından doldurulur, alt kategoriye tıklanınca işler açılır) -->
+<div class="sc-cards-wrap" id="subcatCards" hidden></div>
+<!-- back bar (alt kategori işleri görünürkne) -->
+<div class="sc-back-bar" id="subcatBackBar" hidden></div>
+
+<!-- works list -->
+<main class="works" id="works" aria-label="İşler listesi"></main>
+
+<!-- empty state -->
+<section class="isler-empty" id="emptyState" hidden>
+  <div class="big">Yakında.</div>
+  <p>Bu disiplindeki seçili işler çok yakında burada olacak.</p>
+</section>
+
+<!-- 3D: yatay kayan proje galerisi (sadece kategori=3d için) -->
+<section class="stage3d" id="stage3d" hidden aria-label="3D işler galerisi">
+  <div class="stage3d-viewport" id="vp3d">
+    <div class="stage3d-track" id="track3d"></div>
+  </div>
+  <div class="stage3d-hint" id="s3Hint">↔ sürükle</div>
+</section>
+
+<!-- mini footer -->
+<footer class="isler-foot">
+  <span>© 2026 studiobleur</span>
+  <a href="studiolume.html#iletisim">Bir proje başlat →</a>
+</footer>
+
+<!-- owner-only edit button (görünür yalnızca giriş yapmış site sahibine) -->
+<button class="isler-edit" id="islerEdit" hidden>✎ İşleri düzenle</button>
+
+<!-- cursor-following reveal image -->
+<div class="reveal-img" id="revealImg" aria-hidden="true"><div class="ri-inner" id="revealInner"></div></div>
+
+<!-- custom cursor -->
+<div class="isler-cursor" id="cursor"><span class="lbl">aç</span></div>
+
+<!-- detail lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lbClose" aria-label="Kapat">×</button>
+  <div class="lightbox-inner">
+    <div class="lightbox-visual" id="lbVisual"></div>
+    <div class="lightbox-info">
+      <span class="eyebrow" id="lbCat">İŞ</span>
+      <h3 id="lbTitle">Proje</h3>
+      <p id="lbDesc"></p>
+      <div class="lb-tags" id="lbTags"></div>
+    </div>
+  </div>
+  <div class="lightbox-hint">Kapatmak için boş alana tıkla <kbd>ESC</kbd></div>
+</div>
+
+<script src="works-data.js"></script>
+<script src="portfolio.js"></script>
+<script src="works-3d.js"></script>
+<script src="works-list.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
