@@ -609,6 +609,13 @@
            "window.STUDIOLUME_WORKS = " + JSON.stringify(works, null, 2) + ";\n";
   }
 
+  function buildTeamContent() {
+    const T = window.StudioTeam;
+    const members = T ? T.load() : (window.STUDIOBLEUR_TEAM || []);
+    return "/* studiobleur — EKİP VERİSİ (yönetim panelinden üretildi) */\n" +
+           "window.STUDIOBLEUR_TEAM = " + JSON.stringify(members, null, 2) + ";\n";
+  }
+
   // UTF-8 güvenli base64 (Türkçe karakterler için)
   function utf8ToBase64(str) {
     return btoa(unescape(encodeURIComponent(str)));
@@ -623,53 +630,43 @@
     return t;
   }
 
+  async function pushFile(token, path, content, message) {
+    const apiUrl = "https://api.github.com/repos/" + GH_OWNER + "/" + GH_REPO + "/contents/" + path;
+    const headers = { "Authorization": "token " + token, "Accept": "application/vnd.github+json" };
+    let sha = null;
+    const getRes = await fetch(apiUrl + "?ref=" + GH_BRANCH, { headers });
+    if (getRes.status === 200) { sha = (await getRes.json()).sha; }
+    else if (getRes.status === 401) { throw new Error("TOKEN_INVALID"); }
+    const putRes = await fetch(apiUrl, {
+      method: "PUT", headers,
+      body: JSON.stringify({ message, content: utf8ToBase64(content), branch: GH_BRANCH, sha: sha || undefined })
+    });
+    if (!putRes.ok) {
+      const err = await putRes.json().catch(() => ({}));
+      throw new Error(err.message || putRes.status);
+    }
+    return true;
+  }
+
   async function publish() {
     const token = getToken();
     if (!token) { showToast("Token girilmedi — yayınlanamadı."); return; }
 
     showToast("GitHub'a gönderiliyor…");
-    const content = buildContent();
-    const apiBase = "https://api.github.com/repos/" + GH_OWNER + "/" + GH_REPO + "/contents/" + GH_PATH;
-    const headers = {
-      "Authorization": "token " + token,
-      "Accept": "application/vnd.github+json"
-    };
+    const ts = new Date().toLocaleString("tr-TR");
 
     try {
-      // mevcut dosyanın SHA'sını al
-      let sha = null;
-      const getRes = await fetch(apiBase + "?ref=" + GH_BRANCH, { headers });
-      if (getRes.status === 200) {
-        const data = await getRes.json();
-        sha = data.sha;
-      } else if (getRes.status === 401) {
+      await pushFile(token, "works-data.js",  buildContent(),     "İşler güncellendi — " + ts);
+      await pushFile(token, "team-data.js",   buildTeamContent(), "Ekip güncellendi — " + ts);
+      showToast("✓ Yayınlandı! 30 sn içinde canlıda.");
+    } catch (e) {
+      if (e.message === "TOKEN_INVALID") {
         localStorage.removeItem(GH_TOKEN_KEY);
         showToast("Token geçersiz — silindi, tekrar deneyin.");
         return;
       }
-
-      // yeni içeriği yaz (commit)
-      const putRes = await fetch(apiBase, {
-        method: "PUT",
-        headers: headers,
-        body: JSON.stringify({
-          message: "İşler güncellendi — " + new Date().toLocaleString("tr-TR"),
-          content: utf8ToBase64(content),
-          branch: GH_BRANCH,
-          sha: sha || undefined
-        })
-      });
-
-      if (putRes.ok) {
-        showToast("✓ Yayınlandı! 30 sn içinde canlıda.");
-      } else {
-        const err = await putRes.json().catch(() => ({}));
-        showToast("Hata: " + (err.message || putRes.status) + " — dosya indiriliyor.");
-        downloadFallback(content);
-      }
-    } catch (e) {
-      showToast("Bağlantı hatası — dosya indiriliyor.");
-      downloadFallback(content);
+      showToast("Hata: " + e.message + " — dosyalar indiriliyor.");
+      downloadFallback(buildContent());
     }
   }
 
