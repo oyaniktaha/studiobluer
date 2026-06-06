@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<style data-omelette-injected>html,body{background:transparent}</style><script data-omelette-injected>(()=>{var j=["https://claude.ai","https://preview.claude.ai"];var x=true;var S=30000;var f=3000;document.addEventListener("DOMContentLoaded",()=>{const H=window.Babel;const G="om-src-id";if(H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[G])){H.registerPlugin(G,({types:Y})=>({visitor:{JSXOpeningElement(U,Q){const J=U.node;if(J.name&&J.name.type==="JSXMemberExpression")return;for(let V=0;V<J.attributes.length;V++){const L=J.attributes[V];if(L.type==="JSXAttribute"&&L.name&&L.name.name==="data-om-id")return}const W=Q.file&&Q.file.opts&&Q.file.opts.filename||"?";const Z=J.loc&&J.loc.start;const z=`jsx:${W}:${J.start??0}:${Z?Z.line:0}:${Z?Z.column+1:0}`;J.attributes.push(Y.jsxAttribute(Y.jsxIdentifier("data-om-id"),Y.stringLiteral(z)))}}}))}const k="om-text-extract";let A=false;if(x&&H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[k])){const Y=window.React;if(Y&&Y.useSyncExternalStore&&Y.createElement){A=true;const U={};const Q=new Set;let J=0;window.__omTextO=U;window.__omTextSet=(z)=>{for(const V in z){const L=z[V];if(L==null)delete U[V];else U[V]=L}J++;Q.forEach((V)=>V())};const W=(z)=>{Q.add(z);return()=>Q.delete(z)};const Z=()=>J;window.__OmT=function z(V){Y.useSyncExternalStore(W,Z,Z);return Y.createElement("span",{"data-om-text":V.i,className:"__om-t"},V.i in U?U[V.i]:V.children)};H.registerPlugin(k,({types:z})=>{const V={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const L={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const _=($,C)=>z.logicalExpression("??",z.memberExpression(z.logicalExpression("||",z.memberExpression(z.identifier("window"),z.identifier("__omTextO")),z.objectExpression([])),z.stringLiteral($),true),C);const E=($)=>$.file&&$.file.opts&&$.file.opts.filename||"?";const B=($)=>$.file&&$.file.code||"";const b=($,C)=>{const X=(F)=>F&&F.start!=null&&F.end!=null&&(F.type==="StringLiteral"||F.type==="TemplateLiteral"&&F.expressions.length===0)?[F.start,F.end]:null;const N=X(C);if(N)return N;if(C&&C.type==="Identifier"){const F=$.scope.getBinding(C.name);if(F&&F.constant&&F.path.node.type==="VariableDeclarator"){return X(F.path.node.init)}}return null};const M=($,C,X)=>{const N=$.node;let F=false;const w=(K,q)=>{F=true;return z.jsxElement(z.jsxOpeningElement(z.jsxIdentifier("__OmT"),[z.jsxAttribute(z.jsxIdentifier("i"),z.stringLiteral(K))],false),z.jsxClosingElement(z.jsxIdentifier("__OmT")),[q],false)};const D=N.children.map((K)=>{if(K.type==="JSXText"){if(K.start==null||K.end==null)return K;const q=X.slice(K.start,K.end);const R=q.length-q.trimStart().length;const m=q.length-q.trimEnd().length;if(R+m>=q.length)return K;return w(`txt:${C}:${K.start+R}:${K.end-m}`,K)}if(K.type==="JSXExpressionContainer"){const q=b($,K.expression);if(q)return w(`str:${C}:${q[0]}:${q[1]}`,K)}return K});if(F)N.children=D};return{visitor:{JSXOpeningElement($,C){const X=$.node;const N=E(C);const F={};for(let w=0;w<X.attributes.length;w++){const D=X.attributes[w];if(D.type!=="JSXAttribute"||!D.name)continue;const K=D.name.name;if(!L[K])continue;if(!D.value||D.value.type!=="StringLiteral")continue;if(D.value.start==null||D.value.end==null)continue;const q=`txt:${N}:${D.value.start}:${D.value.end}`;F[K]=q;D.value=z.jsxExpressionContainer(_(q,z.stringLiteral(D.value.value)))}if(Object.keys(F).length){X.attributes.push(z.jsxAttribute(z.jsxIdentifier("data-om-text-attrs"),z.stringLiteral(JSON.stringify(F))))}},JSXElement($,C){const X=$.node.openingElement;const N=X&&X.name&&X.name.name;if(N==="__OmT")return;if(typeof N==="string"&&V[N])return;M($,E(C),B(C))},JSXFragment($,C){M($,E(C),B(C))}}}})}}const u=A?["transform-react-jsx-source",G,k]:["transform-react-jsx-source",G];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((Y,U)=>{const Q=Y.getAttribute("data-plugins")||"";const J=u.filter((W)=>Q.indexOf(W)<0);if(J.length){Y.setAttribute("data-plugins",Q?`${Q},${J.join(",")}`:J.join(","))}if(!Y.hasAttribute("data-filename")){Y.setAttribute("data-filename",Y.getAttribute("src")||`inline-${U}`)}})});var y=window.parent;if(y&&y!==window){const H=(Q,J)=>{try{y.postMessage({__omelette_log:true,type:Q,data:J},"*")}catch{}};["log","warn","error"].forEach((Q)=>{const J=console[Q];console[Q]=(...W)=>{const Z=W.map((z)=>{try{return typeof z==="object"?JSON.stringify(z):String(z)}catch{try{return String(z)}catch{return"[unstringifiable]"}}}).join(" ");H(Q,Z);J.apply(console,W)}});window.addEventListener("error",(Q)=>{const J=Q.target;if(J&&J!==window&&J.tagName){const W=J.src||J.href||"";H("resource_error",`${J.tagName} failed to load: ${W}`)}else{H("error",`${Q.message||"Unknown error"} at ${Q.filename||"?"}:${Q.lineno||0}:${Q.colno||0}`)}},true);window.addEventListener("unhandledrejection",(Q)=>{const J=Q.reason;const W=J instanceof Error?`${J.message} ${J.stack}`:String(J);H("error",`Unhandled rejection: ${W}`)});const G=()=>{try{y.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(document.readyState==="complete")G();else window.addEventListener("load",G);if(window.ResizeObserver)new ResizeObserver(G).observe(document.documentElement);const k={};let A=0;window.claude={complete(Q){return new Promise((J,W)=>{if(!j.length){W(new Error("claude.complete: no parent origin"));return}const Z=`c${++A}`;const z=()=>setTimeout(()=>{delete k[Z];W(new Error(`claude.complete: no data for ${S/1000}s`))},S);const V=z();k[Z]={resolve:J,reject:W,text:"",t:V,arm:z};try{for(const L of j){y.postMessage({__om_api:true,id:Z,body:Q},L)}}catch(L){clearTimeout(V);delete k[Z];W(L)}})}};const u={};let Y=0;window.omelette={writeFile:(Q,J)=>new Promise((W,Z)=>{if(!j.length){W();return}const z=`f${++Y}`;const V=setTimeout(()=>{delete u[z];W()},f);u[z]={resolve:W,reject:Z,t:V};try{for(const L of j){y.postMessage({__om_file:true,id:z,op:"write",path:Q,content:J},L)}}catch{clearTimeout(V);delete u[z];W()}})};const U=(Q)=>{try{return JSON.stringify(Q)}catch{return JSON.stringify(String(Q))}};window.addEventListener("message",(Q)=>{if(j.indexOf(Q.origin)<0)return;if(Q.source!==y)return;const J=Q.data;if(!J)return;if(J.type==="omelette-preview-refresh"){if(typeof J.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(J.token))return;const z=Math.max(1,Math.floor((J.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+J.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+z;return}if(J.__om_file_r){const z=u[J.id];if(!z)return;clearTimeout(z.t);delete u[J.id];if(J.ok)z.resolve();else z.reject(new Error(J.error||"write failed"));return}if(J.__om_api_r){const z=k[J.id];if(!z)return;if(J.error!=null){clearTimeout(z.t);delete k[J.id];z.reject(new Error(J.error));return}if(J.chunk!=null){clearTimeout(z.t);z.t=z.arm();z.text+=J.chunk;return}if(J.done){clearTimeout(z.t);delete k[J.id];z.resolve(J.text!=null?J.text:z.text);return}return}if(!J.__om_eval)return;const W=J;const Z=(z)=>{Q.source.postMessage({...z,__om_eval_r:1,id:W.id},Q.origin)};try{const z=(0,eval)(W.code);if(z&&typeof z.then==="function"){z.then((V)=>Z({ok:1,v:U(V)}),(V)=>Z({ok:0,e:String(V)}))}else{Z({ok:1,v:U(z)})}}catch(z){Z({ok:0,e:String(z)})}})}})();
+</script>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bize Ulaşın — studiobleur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="contact-data.js"></script>
+<style>
+:root {
+  --bg: #070709;
+  --surface: #111114;
+  --surface-2: #18181c;
+  --line: rgba(255,255,255,0.07);
+  --line-2: rgba(255,255,255,0.12);
+  --text: #f0f0f2;
+  --muted: #888892;
+  --faint: #444450;
+  --lime: #bef078;
+  --coral: #ff7a5c;
+  --violet: #9b7bff;
+  --sky: #5bc8f5;
+  --ease: cubic-bezier(0.23,1,0.32,1);
+  --display: 'Bricolage Grotesque', 'Space Grotesk', sans-serif;
+  --body: 'Space Grotesk', -apple-system, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAV */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  position: relative; z-index: 10;
+}
+.topbar .logo {
+  font-family: var(--display); font-weight: 800; font-size: 1.35rem;
+  letter-spacing: -0.03em; color: var(--text); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.topbar .logo .dot { width: 9px; height: 9px; background: var(--lime); border-radius: 50%; }
+.topbar .back {
+  font-size: .85rem; color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; gap: 6px; transition: color .3s;
+}
+.topbar .back:hover { color: var(--text); }
+.topbar nav { display: flex; gap: 28px; }
+.topbar nav a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .3s; }
+.topbar nav a:hover { color: var(--text); }
+.topbar nav a.active { color: var(--lime); }
+
+/* PAGE LAYOUT */
+.page {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  min-height: 0;
+}
+
+/* LEFT */
+.left {
+  padding: clamp(48px,6vw,88px) clamp(32px,4vw,64px);
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  background: var(--bg);
+}
+.left::before {
+  content: ""; position: absolute; top: -20%; left: -30%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(190,240,120,0.05), transparent 60%);
+  pointer-events: none;
+}
+.eyebrow {
+  font-size: .7rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--lime); margin-bottom: 20px;
+}
+.left h1 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  letter-spacing: -0.04em; line-height: 0.95;
+  margin-bottom: 20px; text-wrap: balance;
+}
+.left h1 em { font-style: italic; color: var(--lime); }
+.left .subtitle {
+  color: var(--muted); font-size: .98rem; line-height: 1.75;
+  max-width: 360px; margin-bottom: 48px; text-wrap: pretty;
+}
+
+/* CONTACT ITEMS */
+.contact-items { display: flex; flex-direction: column; gap: 0; }
+.ci {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 20px 0; border-bottom: 1px solid var(--line);
+}
+.ci:first-child { border-top: 1px solid var(--line); }
+.ci-icon {
+  width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
+  background: var(--surface); border: 1px solid var(--line-2);
+  display: grid; place-items: center; color: var(--lime);
+}
+.ci-icon svg { width: 18px; height: 18px; }
+.ci-body { display: flex; flex-direction: column; gap: 3px; }
+.ci-label { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+.ci-value { font-size: .95rem; color: var(--text); font-weight: 500; }
+.ci-value a { color: inherit; text-decoration: none; transition: color .3s; }
+.ci-value a:hover { color: var(--lime); }
+
+/* SOCIAL */
+.socials { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+.social-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 100px;
+  border: 1px solid var(--line-2); background: var(--surface);
+  color: var(--muted); text-decoration: none; font-size: .82rem; font-weight: 600;
+  transition: all .3s;
+}
+.social-btn:hover { border-color: var(--line-2); background: var(--surface-2); color: var(--text); transform: translateY(-2px); }
+.social-btn svg { width: 16px; height: 16px; opacity: .7; }
+.social-btn.instagram:hover { color: #e1306c; border-color: rgba(225,48,108,.3); }
+.social-btn.behance:hover   { color: #1769ff; border-color: rgba(23,105,255,.3); }
+.social-btn.linkedin:hover  { color: #0a66c2; border-color: rgba(10,102,194,.3); }
+.social-btn.twitter:hover   { color: #1da1f2; border-color: rgba(29,161,242,.3); }
+
+/* CTA BUTTON */
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 40px; padding: 14px 28px;
+  background: var(--lime); color: #0a0a0c;
+  border-radius: 100px; border: none; cursor: pointer;
+  font-family: var(--display); font-weight: 700; font-size: .92rem;
+  text-decoration: none; transition: opacity .2s, transform .2s;
+  align-self: flex-start;
+}
+.cta-btn:hover { opacity: .9; transform: translateY(-2px); }
+
+/* RIGHT — MAP */
+.right {
+  position: relative; overflow: hidden;
+  background: var(--surface);
+  display: flex; flex-direction: column;
+}
+.map-header {
+  padding: 24px 32px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.map-header span {
+  font-size: .72rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--faint);
+}
+.map-header a {
+  font-size: .82rem; color: var(--lime); text-decoration: none;
+  font-weight: 600; transition: opacity .2s;
+}
+.map-header a:hover { opacity: .7; }
+.map-frame { flex: 1; position: relative; min-height: 400px; }
+.map-frame iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  border: none; filter: invert(0.9) hue-rotate(180deg) saturate(0.6) brightness(0.85);
+}
+.map-overlay-tag {
+  position: absolute; bottom: 24px; left: 24px;
+  background: var(--bg); border: 1px solid var(--line-2);
+  border-radius: 12px; padding: 12px 18px;
+  display: flex; align-items: center; gap: 10px;
+  backdrop-filter: blur(16px);
+  pointer-events: none;
+}
+.map-overlay-tag .mot-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--lime); box-shadow: 0 0 0 4px rgba(190,240,120,.2);
+  flex-shrink: 0; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 4px rgba(190,240,120,.2); }
+  50%      { box-shadow: 0 0 0 8px rgba(190,240,120,.08); }
+}
+.map-overlay-tag .mot-text {
+  font-size: .82rem; font-weight: 600; color: var(--text); line-height: 1.3;
+}
+.map-overlay-tag .mot-sub { font-size: .7rem; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .page { grid-template-columns: 1fr; grid-template-rows: auto 420px; }
+  .left { border-right: none; border-bottom: 1px solid var(--line); }
+  .topbar { padding: 18px 24px; }
+  .topbar nav { display: none; }
+}
+@media (max-width: 480px) {
+  .left { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="studiolume.html" class="logo"><span class="dot"></span>studiobleur</a>
+  <nav>
+    <a href="studiolume.html#hizmetler">Hizmetler</a>
+    <a href="isler.html">İşler</a>
+    <a href="iletisim.html">Proje başlat</a>
+    <a href="bize-ulasin.html" class="active">İletişim</a>
+  </nav>
+  <a href="studiolume.html" class="back">← Geri dön</a>
+</header>
+
+<main class="page">
+  <!-- LEFT -->
+  <div class="left" id="contactLeft">
+    <span class="eyebrow">Bize Ulaşın</span>
+    <h1>Konuşalım,<br /><em>birlikte yapalım.</em></h1>
+    <p class="subtitle">Bir projeniz mi var, sormak istediğiniz bir şey mi? Yazın, hemen dönelim.</p>
+
+    <div class="contact-items" id="contactItems"></div>
+
+    <div class="socials" id="socialLinks"></div>
+
+    <a href="iletisim.html" class="cta-btn">Proje başlat →</a>
+  </div>
+
+  <!-- RIGHT — MAP -->
+  <div class="right">
+    <div class="map-header">
+      <span>Konum</span>
+      <a href="#" id="mapsLink" target="_blank" rel="noopener">Google Maps'te aç ↗</a>
+    </div>
+    <div class="map-frame">
+      <iframe id="mapIframe" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Konum haritası"></iframe>
+      <div class="map-overlay-tag">
+        <span class="mot-dot"></span>
+        <div class="mot-text">
+          studiobleur
+          <div class="mot-sub" id="mapTagAddress">Alanya, Antalya</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  var C = window.StudioContact ? window.StudioContact.load() : (window.STUDIOBLEUR_CONTACT || {
+    phone: "+90 555 000 00 00",
+    email: "info@studiobleur.com",
+    address: "Alanya, Antalya / Türkiye",
+    mapUrl: "https://maps.google.com/maps?q=alanya+antalya&output=embed",
+    instagram: "", behance: "", linkedin: "", twitter: ""
+  });
+
+  function render(c) {
+    // Contact items
+    var items = [
+      { icon: phoneSvg(),   label: "Telefon",  value: c.phone,   href: "tel:" + c.phone.replace(/\s/g,'') },
+      { icon: emailSvg(),   label: "E-posta",  value: c.email,   href: "mailto:" + c.email },
+      { icon: pinSvg(),     label: "Adres",    value: c.address, href: null }
+    ].filter(function(x){ return x.value && x.value.trim(); });
+
+    var ciHTML = items.map(function(item){
+      return '<div class="ci">' +
+        '<div class="ci-icon">' + item.icon + '</div>' +
+        '<div class="ci-body">' +
+          '<span class="ci-label">' + item.label + '</span>' +
+          '<span class="ci-value">' +
+            (item.href ? '<a href="' + item.href + '">' + esc(item.value) + '</a>' : esc(item.value)) +
+          '</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    document.getElementById('contactItems').innerHTML = ciHTML;
+
+    // Socials
+    var socials = [
+      { key: 'instagram', label: 'Instagram', cls: 'instagram', icon: igSvg(),  prefix: 'https://instagram.com/' },
+      { key: 'behance',   label: 'Behance',   cls: 'behance',   icon: behSvg(), prefix: 'https://behance.net/' },
+      { key: 'linkedin',  label: 'LinkedIn',  cls: 'linkedin',  icon: liSvg(),  prefix: 'https://linkedin.com/in/' },
+      { key: 'twitter',   label: 'X / Twitter', cls: 'twitter', icon: twSvg(),  prefix: 'https://x.com/' }
+    ];
+    var socHTML = socials.map(function(s){
+      if (!c[s.key]) return '';
+      var href = c[s.key].startsWith('http') ? c[s.key] : s.prefix + c[s.key];
+      return '<a class="social-btn ' + s.cls + '" href="' + href + '" target="_blank" rel="noopener">' + s.icon + s.label + '</a>';
+    }).join('');
+    document.getElementById('socialLinks').innerHTML = socHTML;
+
+    // Map
+    var mapIframe = document.getElementById('mapIframe');
+    var mapLink   = document.getElementById('mapsLink');
+    var mapAddr   = document.getElementById('mapTagAddress');
+    if (c.mapUrl) {
+      mapIframe.src = c.mapUrl;
+      mapLink.href  = c.mapUrl.replace('output=embed','').replace('&output=embed','');
+    }
+    if (c.address) mapAddr.textContent = c.address;
+  }
+
+  function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+  function phoneSvg(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3-8.59A2 2 0 012 .57h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.41a16 16 0 006.5 6.5l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>'; }
+  function emailSvg(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>'; }
+  function pinSvg(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>'; }
+  function igSvg(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>'; }
+  function behSvg(){ return '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M7.8 10.2c.9-.4 1.5-1.2 1.5-2.3 0-2-1.6-2.9-3.4-2.9H1v12h5.3c2 0 3.9-1 3.9-3.2 0-1.4-.7-2.9-2.4-3.6zm-4.4-3h2.3c.8 0 1.5.3 1.5 1.2S6.6 9.6 5.7 9.6H3.4V7.2zm2.7 7.4H3.4v-2.8h2.9c1 0 1.7.5 1.7 1.4 0 1-.8 1.4-1.9 1.4zm9.8-8.2c-3.3 0-5.5 2.3-5.5 5.5 0 3.3 2 5.5 5.5 5.5 2.5 0 4.1-1.2 4.9-3.4h-2.4c-.3.8-1.3 1.3-2.4 1.3-1.5 0-2.7-1-2.8-2.5H22c0-.3.1-.5.1-.8 0-3-1.8-5.6-6.2-5.6zm-2.6 4.4c.2-1.3 1.2-2.3 2.6-2.3 1.4 0 2.4.9 2.5 2.3h-5.1zm5.4-7.3h-5.5v1.5h5.5V3.5z"/></svg>'; }
+  function liSvg(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>'; }
+  function twSvg(){ return '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'; }
+
+  render(C);
+
+  // Live update from admin
+  window.addEventListener('contact-updated', function(e){ render(e.detail); });
+})();
+</script>
+</body>
+</html>
