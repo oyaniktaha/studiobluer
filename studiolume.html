@@ -32,11 +32,11 @@
 <nav class="nav" id="nav">
   <a href="#top" class="logo"><span class="dot"></span>studiobleur</a>
   <div class="nav-links">
-    <a href="#hizmetler">Hizmetler</a>
-    <a href="#surec">Süreç</a>
-    <a href="#hakkimizda">Stüdyo</a>
-    <a href="#sss">SSS</a>
-    <a href="bize-ulasin.html">İletişim</a>
+    <a href="#hizmetler" style="color: rgb(255, 255, 255)">Hizmetler</a>
+    <a href="#surec" style="color: rgb(255, 255, 255)">Süreç</a>
+    <a href="#hakkimizda" style="color: rgb(255, 255, 255)">Stüdyo</a>
+    <a href="#sss" style="color: rgb(255, 255, 255)">SSS</a>
+    <a href="bize-ulasin.html" style="color: rgb(255, 255, 255)">İletişim</a>
   </div>
   <div class="nav-cta">
     <a href="iletisim.html" class="btn btn-primary">Proje başlat <span class="arr">→</span></a>
@@ -56,7 +56,9 @@
     </div>
 
     <div class="wrap hero-inner hero-phase phase-a" id="phaseA">
-      <span class="eyebrow hero-eyebrow">UI/UX · 3D GÖRSELLEŞTİRME · YAPAY ZEKÂ</span>
+      <span class="eyebrow hero-eyebrow" style="color: rgb(61, 61, 61); flex-direction: row; font-size: 16px">UI/UX · 3D GÖRSELLEŞTİRME · YAPAY ZEKÂ
+·
+ ÜRÜN TASARIMI</span>
       <h1 class="hero-title" id="heroTitle">studiobleur</h1>
       <div class="hero-bottom">
         <p class="hero-sub">Tasarım, üç boyutlu görselleştirme ve yapay zekânın buluştuğu yaratıcı stüdyo. Markaları ufkun ötesine taşıyoruz.</p>
@@ -285,7 +287,7 @@
         <a href="iletisim.html" class="btn btn-primary">Proje başlat <span class="arr">→</span></a>
       </div>
       <br />
-      <a href="mailto:info@studiobleur.com" class="mail">info@studiobleur.com</a>
+      <a id="ctaMail" href="#" class="mail"></a>
     </div>
   </div>
 </section>
@@ -389,6 +391,13 @@
 <script src="team.js"></script>
 <script src="main.js"></script>
 <script src="admin.js"></script>
+<script>
+(function(){
+  var m=['info','studiobleur.com'].join('@');
+  var el=document.getElementById('ctaMail');
+  if(el){el.href='mailto:'+m;el.textContent=m;}
+})();
+</script>
 <script type="module" src="hero3d.js"></script>
 
 <!-- Tweaks island (React) -->
