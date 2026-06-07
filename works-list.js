@@ -334,7 +334,8 @@
     e.preventDefault();
     const w = items[+row.dataset.i];
     if (w && w.id) {
-      location.href = "proje.html?id=" + encodeURIComponent(w.id);
+      var backUrl = "isler.html?kategori=" + cat + (activeSubcat ? "&subcat=" + activeSubcat : "");
+      location.href = "proje.html?id=" + encodeURIComponent(w.id) + "&back=" + encodeURIComponent(backUrl);
     } else {
       openLB(w);
     }
