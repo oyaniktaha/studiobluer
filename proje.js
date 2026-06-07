@@ -63,23 +63,16 @@
     document.title = (w.title || "Proje") + " — studiobleur";
 
     // nav + back links
+    var backUrl = new URLSearchParams(location.search).get("back") ||
+      ("isler.html?kategori=" + (w.cat || "uiux"));
     var backBtn = document.getElementById("backBtn");
-    if (backBtn) backBtn.href = "isler.html?kategori=" + (w.cat || "uiux");
+    if (backBtn) backBtn.href = backUrl;
     var footBack = document.getElementById("footBack");
-    if (footBack) footBack.href = "isler.html?kategori=" + (w.cat || "uiux");
+    if (footBack) footBack.href = backUrl;
     var pnavCat = document.getElementById("pnavCat");
     if (pnavCat) pnavCat.textContent = m.label;
 
-    // hero video
-    if (w.heroVideo) {
-      var heroMedia = document.getElementById("heroMedia");
-      var heroPh = document.getElementById("heroPh");
-      var markup = heroMarkup(w.heroVideo);
-      if (markup && heroMedia) {
-        if (heroPh) heroPh.remove();
-        heroMedia.insertAdjacentHTML("beforeend", markup);
-      }
-    }
+    // hero video kaldırıldı
 
     // project info
     var catEl = document.getElementById("projeCat");
