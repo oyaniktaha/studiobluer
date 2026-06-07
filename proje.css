@@ -36,49 +36,6 @@
   flex: none;
 }
 
-/* ---- HERO VIDEO ---- */
-.proje-hero {
-  margin-top: 54px; /* nav height */
-  width: 100%;
-  background: #000;
-  border-bottom: 1px solid var(--line);
-}
-.proje-hero-media {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 88vh;
-  overflow: hidden;
-  background: #000;
-}
-.proje-hero-media video,
-.proje-hero-media img.hero-media-el {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.proje-hero-media iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  border: none;
-  display: block;
-  pointer-events: none; /* no controls, just visual */
-}
-.hero-ph {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--surface) 0 14px,
-    var(--bg-2) 14px 28px
-  );
-  display: grid;
-  place-items: center;
-}
-
 /* ---- PROJECT INFO ---- */
 .proje-info {
   padding-block: clamp(52px, 9vw, 112px);
