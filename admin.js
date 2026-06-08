@@ -722,8 +722,8 @@
 
   // Tüm site dosyaları — fetch edip push edilecek
   var SITE_FILES = [
-    "studiolume.html", "styles.css", "main.js", "admin.js", "cosmos.js",
-    "hero3d.js", "image-slot.js", "portfolio.js",
+    "studiolume.html", "styles.css", "main.js", "admin.js", "admin.html",
+    "hero3d.js", "image-slot.js", "portfolio.js", "i18n.js",
     "isler.html", "isler.css",
     "proje.html", "proje.js", "proje.css",
     "team.js", "bize-ulasin.html", "iletisim.html",
