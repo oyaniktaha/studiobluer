@@ -424,30 +424,26 @@ body {
       <div class="field">
         <label>Hangi alanda çalışmak istiyorsunuz?</label>
         <div class="cat-select" id="catSelect">
-          <label class="cat-opt" style="--cat-c: var(--lime)">
-            <input type="checkbox" name="kategori" value="UI/UX Tasarım"/>
+          <div class="cat-opt" data-val="UI/UX Tasarım" style="--cat-c: var(--lime)">
             <span class="co-dot" style="background:var(--lime)"></span>
             <span class="co-label">UI/UX Tasarım</span>
             <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </label>
-          <label class="cat-opt" style="--cat-c: var(--coral)">
-            <input type="checkbox" name="kategori" value="3D Görselleştirme"/>
+          </div>
+          <div class="cat-opt" data-val="3D Görselleştirme" style="--cat-c: var(--coral)">
             <span class="co-dot" style="background:var(--coral)"></span>
             <span class="co-label">3D Görselleştirme</span>
             <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </label>
-          <label class="cat-opt" style="--cat-c: var(--violet)">
-            <input type="checkbox" name="kategori" value="Yapay Zekâ"/>
+          </div>
+          <div class="cat-opt" data-val="Yapay Zekâ" style="--cat-c: var(--violet)">
             <span class="co-dot" style="background:var(--violet)"></span>
             <span class="co-label">Yapay Zekâ</span>
             <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </label>
-          <label class="cat-opt" style="--cat-c: var(--sky)">
-            <input type="checkbox" name="kategori" value="Ürün Tasarımı"/>
+          </div>
+          <div class="cat-opt" data-val="Ürün Tasarımı" style="--cat-c: var(--sky)">
             <span class="co-dot" style="background:var(--sky)"></span>
             <span class="co-label">Ürün Tasarımı</span>
             <span class="co-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#0a0a0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </label>
+          </div>
         </div>
       </div>
 
@@ -482,16 +478,10 @@ body {
 
 <script>
 (function(){
-  // Category checkbox toggle — direct click handler
+  // Category toggle — div tabanlı, native label davranışı yok
   document.querySelectorAll('.cat-opt').forEach(function(opt){
-    var cb = opt.querySelector('input[type="checkbox"]');
-    opt.addEventListener('click', function(e){
-      if(e.target === cb) return; // native toggle zaten olur
-      cb.checked = !cb.checked;
-      opt.classList.toggle('selected', cb.checked);
-    });
-    cb.addEventListener('change', function(){
-      opt.classList.toggle('selected', cb.checked);
+    opt.addEventListener('click', function(){
+      opt.classList.toggle('selected');
     });
   });
 
@@ -549,7 +539,7 @@ body {
       return;
     }
 
-    var cats = Array.from(document.querySelectorAll('.cat-opt input:checked')).map(function(c){return c.value;});
+    var cats = Array.from(document.querySelectorAll('.cat-opt.selected')).map(function(d){return d.dataset.val;});
     var fileNames = selectedFiles.map(function(f){return f.name;}).join(', ');
 
     var btn = document.getElementById('btnSubmit');
