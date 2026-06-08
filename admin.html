@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>studiobleur — Yönetim Paneli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#07070a;color:#f0f0f2;font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+
+/* LOGIN SCREEN */
+#loginScreen{display:flex;flex-direction:column;align-items:center;gap:0;width:100%;padding:24px;}
+.login-card{background:#111114;border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:44px 40px;max-width:400px;width:100%;}
+.login-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;gap:8px;margin-bottom:32px;}
+.login-logo .dot{width:9px;height:9px;background:#bef078;border-radius:50%;flex-shrink:0;}
+.login-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.03em;margin-bottom:6px;}
+.login-sub{color:#888892;font-size:.85rem;margin-bottom:28px;}
+.login-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#555562;margin-bottom:8px;display:block;}
+.login-input{width:100%;background:#18181c;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:13px 16px;color:#f0f0f2;font-size:.95rem;font-family:'Space Grotesk',sans-serif;outline:none;transition:border-color .2s;margin-bottom:18px;}
+.login-input:focus{border-color:rgba(190,240,120,0.4);}
+.login-btn{width:100%;padding:14px;background:#bef078;color:#0a0a0c;border:none;border-radius:12px;font-size:.95rem;font-weight:700;font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:opacity .2s;letter-spacing:-.01em;}
+.login-btn:hover{opacity:.88;}
+.login-err{color:#ff7a5c;font-size:.82rem;margin-top:12px;min-height:18px;text-align:center;}
+.login-hint{color:#555562;font-size:.75rem;margin-top:20px;text-align:center;line-height:1.6;}
+
+/* ADMIN PANEL WRAPPER */
+#adminWrapper{display:none;width:100%;min-height:100vh;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo"><span class="dot"></span>studiobleur</div>
+    <div class="login-title">Yönetim Paneli</div>
+    <p class="login-sub">Devam etmek için şifrenizi girin.</p>
+    <label class="login-label">Şifre</label>
+    <input type="password" id="pwInput" class="login-input" placeholder="••••••••"
+      onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">Giriş Yap →</button>
+    <p class="login-err" id="loginErr"></p>
+    <p class="login-hint">Bu sayfa arama motorlarına kapalıdır.<br/>Ziyaretçiler bu sayfayı göremez.</p>
+  </div>
+</div>
+
+<!-- ADMIN PANEL (şifreden sonra yüklenir) -->
+<div id="adminWrapper"></div>
+
+<!-- works-data her zaman yüklü olsun -->
+<script>
+/* Güvenlik notu: şifre client-side hash ile korunuyor.
+   Gerçek güvenlik için sunucu taraflı auth gerekir.
+   Bu basit koruma sıradan ziyaretçileri engeller. */
+var ADMIN_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
+
+function sha256(str) {
+  var buffer = new TextEncoder().encode(str);
+  return crypto.subtle.digest('SHA-256', buffer).then(function(hash) {
+    return Array.from(new Uint8Array(hash)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+  });
+}
+
+function doLogin() {
+  var pw = document.getElementById('pwInput').value;
+  if (!pw) { document.getElementById('loginErr').textContent = 'Şifre boş olamaz.'; return; }
+  sha256(pw).then(function(hash) {
+    if (hash === ADMIN_HASH) {
+      document.getElementById('loginErr').textContent = '';
+      sessionStorage.setItem('sb_admin_auth', '1');
+      loadAdmin();
+    } else {
+      document.getElementById('loginErr').textContent = 'Yanlış şifre.';
+      document.getElementById('pwInput').value = '';
+      document.getElementById('pwInput').focus();
+    }
+  });
+}
+
+function loadAdmin() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminWrapper').style.display = 'block';
+
+  /* works-data yükle */
+  var s1 = document.createElement('script'); s1.src = 'works-data.js'; document.body.appendChild(s1);
+  var s2 = document.createElement('script'); s2.src = 'team-data.js'; document.body.appendChild(s2);
+  var s3 = document.createElement('script');
+  s3.src = 'admin.js';
+  s3.onload = function() {
+    if (window.studiobleurAdmin) window.studiobleurAdmin.open();
+  };
+  document.body.appendChild(s3);
+}
+
+/* Oturum açıksa direkt giriş */
+if (sessionStorage.getItem('sb_admin_auth') === '1') {
+  loadAdmin();
+}
+
+/* Robots meta */
+var m = document.createElement('meta'); m.name='robots'; m.content='noindex,nofollow'; document.head.appendChild(m);
+</script>
+</body>
+</html>
