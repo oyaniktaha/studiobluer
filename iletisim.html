@@ -557,23 +557,20 @@ body {
     formData.append('files_note', fileNames || '—');
     selectedFiles.forEach(function(f){ formData.append('file', f); });
 
-    // Web3Forms ile gönder — ücretsiz, kayıt gerektirmez
-    // web3forms.com adresine gidin, e-postanızı girin, access_key alın
-    var formData2 = {
-      access_key: 'e09e9650-2eda-4bc7-88f6-55b8dfe157d8',
-      name: ad + ' ' + soyad,
-      email: email,
-      phone: tel || '—',
-      services: cats.length ? cats.join(', ') : '—',
-      message: msg,
-      files_note: fileNames || '—',
-      subject: 'Proje Talebi — ' + ad + ' ' + soyad + (cats.length ? ' (' + cats[0] + ')' : '')
-    };
+    // Web3Forms ile gönder — FormData (dosya desteği için)
+    var fd = new FormData();
+    fd.append('access_key', 'e09e9650-2eda-4bc7-88f6-55b8dfe157d8');
+    fd.append('name', ad + ' ' + soyad);
+    fd.append('email', email);
+    fd.append('phone', tel || '—');
+    fd.append('services', cats.length ? cats.join(', ') : '—');
+    fd.append('message', msg);
+    fd.append('subject', 'Proje Talebi — ' + ad + ' ' + soyad + (cats.length ? ' (' + cats[0] + ')' : ''));
+    selectedFiles.forEach(function(f){ fd.append('attachment', f); });
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-      body: JSON.stringify(formData2)
+      body: fd
     })
     .then(function(res){
       if(res.ok){
