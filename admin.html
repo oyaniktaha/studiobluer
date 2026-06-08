@@ -6,6 +6,7 @@
 <title>studiobleur — Yönetim Paneli</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#07070a;color:#f0f0f2;font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;}
@@ -83,15 +84,21 @@ function loadAdmin() {
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('adminWrapper').style.display = 'block';
 
-  /* works-data yükle */
-  var s1 = document.createElement('script'); s1.src = 'works-data.js'; document.body.appendChild(s1);
-  var s2 = document.createElement('script'); s2.src = 'team-data.js'; document.body.appendChild(s2);
-  var s3 = document.createElement('script');
-  s3.src = 'admin.js';
-  s3.onload = function() {
-    if (window.studiobleurAdmin) window.studiobleurAdmin.open();
-  };
-  document.body.appendChild(s3);
+  // Scriptleri sıralı yükle
+  function loadSeq(srcs, cb) {
+    if (!srcs.length) { cb(); return; }
+    var s = document.createElement('script');
+    s.src = srcs[0];
+    s.onload = function() { loadSeq(srcs.slice(1), cb); };
+    s.onerror = function() { loadSeq(srcs.slice(1), cb); };
+    document.body.appendChild(s);
+  }
+
+  loadSeq(['works-data.js','team-data.js','portfolio.js','team.js','admin.js'], function() {
+    setTimeout(function() {
+      if (window.studiobleurAdmin) window.studiobleurAdmin.open();
+    }, 100);
+  });
 }
 
 /* Oturum açıksa direkt giriş */
