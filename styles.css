@@ -195,12 +195,14 @@ body::before {
    ============================================================ */
 .hero {
   position: relative;
-  height: 240vh;            /* scroll track for the pinned journey */
-  overflow: visible;
+  height: 100vh;
+  overflow: hidden;
 }
-.hero-sticky {
-  position: sticky;
-  top: 0;
+.hero-flat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
   height: 100vh;
   overflow: hidden;
   display: flex;
