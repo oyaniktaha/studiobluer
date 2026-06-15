@@ -68,45 +68,36 @@
         <button class="lang-opt" data-lang="ar" onclick="window.selectLang('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-name">AR</span></button>
       </div>
     </div>
-    <a href="iletisim.html" class="btn btn-primary"><span data-i18n="nav_cta">Proje başlat</span> <span class="arr">→</span></a>
+    <a href="iletisim.html" class="btn btn-primary" style="height: 36px"><span data-i18n="nav_cta">Proje başlat</span> <span class="arr">→</span></a>
   </div>
 </nav>
 
 <!-- ================= HERO ================= -->
-<header class="hero" id="top" data-screen-label="Hero">
-  <div class="hero-sticky">
-    <div class="hero-fallback"></div>
-    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+<header class="hero hero-flat" id="top" data-screen-label="Hero">
+  <div class="hero-fallback"></div>
 
-    <div class="side-menu">
-      <div class="menu-icon"><span></span><span></span><span></span></div>
-      <div class="vline"></div>
-      <div class="vert">studiobleur</div>
-    </div>
+  <div class="side-menu">
+    <div class="menu-icon"><span></span><span></span><span></span></div>
+    <div class="vline"></div>
+    <div class="vert">studiobleur</div>
+  </div>
 
-    <div class="wrap hero-inner hero-phase phase-a" id="phaseA">
-      <span class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow" style="color: rgb(61, 61, 61); flex-direction: row; font-size: 16px">UI/UX · 3D GÖRSELLEŞTİRME · YAPAY ZEKÂ
-·
- ÜRÜN TASARIMI</span>
-      <h1 class="hero-title" id="heroTitle">studiobleur</h1>
-      <div class="hero-bottom">
-        <p class="hero-sub" data-i18n="hero_sub">Tasarım, üç boyutlu görselleştirme ve yapay zekânın buluştuğu yaratıcı stüdyo. Markaları ufkun ötesine taşıyoruz.</p>
-        <div class="hero-actions">
-          <a href="#iletisim" class="btn btn-primary">Bir proje başlat <span class="arr">→</span></a>
-          <a href="#hizmetler" class="btn btn-ghost">Ne yapıyoruz?</a>
-        </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">UI/UX · 3D GÖRSELLEŞTİRME · YAPAY ZEKÂ · ÜRÜN TASARIMI</span>
+    <h1 class="hero-title" id="heroTitle">studiobleur</h1>
+    <div class="hero-bottom">
+      <p class="hero-sub" data-i18n="hero_sub">Tasarım, üç boyutlu görselleştirme ve yapay zekânın buluştuğu yaratıcı stüdyo. Markaları ufkun ötesine taşıyoruz.</p>
+      <div class="hero-actions">
+        <a href="iletisim.html" class="btn btn-primary">Bir proje başlat <span class="arr">→</span></a>
+        <a href="#hizmetler" class="btn btn-ghost">Ne yapıyoruz?</a>
       </div>
     </div>
+  </div>
 
-    <div class="hero-phase phase-b" id="phaseB">
-      <h2 class="phase-title">Ufkun ötesini<br /><em>tasarlıyoruz.</em></h2>
-    </div>
-
-    <div class="scroll-progress">
-      <div class="scroll-text">scroll</div>
-      <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
-      <div class="section-counter" id="secCount">01 / 03</div>
-    </div>
+  <div class="scroll-progress">
+    <div class="scroll-text">scroll</div>
+    <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+    <div class="section-counter" id="secCount">01 / 03</div>
   </div>
 </header>
 
@@ -190,16 +181,6 @@
       <span class="svc-cue" data-i18n="svc4_cta">Projeleri gör →</span>
     </a>
 
-  </div>
-</section>
-
-<!-- ================= STATS ================= -->
-<section class="section stats" data-screen-label="İstatistik">
-  <div class="wrap stats-grid">
-    <div class="stat reveal" data-d="0"><div class="big" data-count="120" data-suf="+">0</div><div class="lbl" data-i18n="stat1_lbl">tamamlanan proje</div></div>
-    <div class="stat reveal" data-d="1"><div class="big" data-count="40" data-suf="+">0</div><div class="lbl" data-i18n="stat2_lbl">mutlu müşteri</div></div>
-    <div class="stat reveal" data-d="2"><div class="big" data-count="9" data-suf=" yıl">7 yıl</div><div class="lbl" data-i18n="stat3_lbl">stüdyo deneyimi</div></div>
-    <div class="stat reveal" data-d="3"><div class="big" data-count="14" data-suf="">0</div><div class="lbl" data-i18n="stat4_lbl">farklı ülkeden iş</div></div>
   </div>
 </section>
 
@@ -427,7 +408,7 @@
   if(el){el.href='mailto:'+m;el.textContent=m;}
 })();
 </script>
-<script type="module" src="hero3d.js"></script>
+<!-- hero3d parallax devre dışı -->
 
 <!-- Tweaks island (React) -->
 <div id="tweaks-root"></div>
@@ -438,6 +419,7 @@
 <script type="text/babel" src="tweaks-app.jsx"></script>
 
 
+<script src="admin.js"></script>
 <script src="i18n.js"></script>
 <script>
 /* Gizli admin kısayolu: Ctrl+Shift+Y */
