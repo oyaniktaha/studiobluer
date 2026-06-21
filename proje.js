@@ -97,7 +97,7 @@
     var emptyEl = document.getElementById("galleryEmpty");
     var framesEl = document.getElementById("galleryFrames");
     var galleryLbl = document.getElementById("galleryLabel");
-    var isMobile = w.subcat === "mobil";
+    var isMobile = false; // telefon prototip modu kapalı — tüm işler standart galeri
 
     if (emptyEl) emptyEl.hidden = gallery.length > 0;
 
