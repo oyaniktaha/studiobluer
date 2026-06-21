@@ -499,12 +499,27 @@ body.lb-active .reveal-img { opacity: 0 !important; }
   flex: 1;
 }
 .sc-card-go {
-  font-size: 1.2rem;
-  color: var(--cat, var(--lime));
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
   margin-top: auto;
-  transition: transform 0.35s var(--ease);
+  padding: 9px 18px;
+  border-radius: 100px;
+  white-space: nowrap;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--cat, var(--lime));
+  border: 1.5px solid color-mix(in oklab, var(--cat, var(--lime)), transparent 55%);
+  background: color-mix(in oklab, var(--cat, var(--lime)), transparent 92%);
+  transition: background 0.35s, border-color 0.35s, color 0.35s, gap 0.3s;
 }
-.sc-card:hover .sc-card-go { transform: translateX(6px); }
+.sc-card:hover .sc-card-go {
+  background: var(--cat, var(--lime));
+  border-color: var(--cat, var(--lime));
+  color: #0a0a0a;
+  gap: 11px;
+}
 
 /* back bar */
 .sc-back-bar[hidden] { display: none; }
@@ -563,11 +578,10 @@ body:not(.mode-ai) .ai-spline { display: none; }
    ============================================================ */
 .stage3d[hidden] { display: none; }
 .stage3d {
-  /* full-bleed: break out of the page max-width */
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  margin-top: clamp(10px, 2vw, 26px);
+  /* page max-width ıçinde kalır — grid düzeni */
+  max-width: var(--maxw);
+  margin: clamp(10px, 2vw, 26px) auto 0;
+  padding: 0 clamp(20px, 4vw, 48px);
 }
 /* compact the header — the gallery is the focus */
 body.mode-3d .isler-head {
@@ -586,27 +600,20 @@ body.mode-3d .reveal-img { display: none; }
 
 .stage3d-viewport {
   position: relative;
-  overflow: hidden;
   padding-block: clamp(24px, 4vw, 48px);
-  cursor: grab;
-  /* soft fade at both edges */
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
 }
-.stage3d.dragging .stage3d-viewport { cursor: grabbing; }
 
 .stage3d-track {
-  display: flex;
-  gap: clamp(18px, 2.2vw, 34px);
-  width: max-content;
-  will-change: transform;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(18px, 2.2vw, 30px);
+  width: 100%;
 }
 
 /* a single project card */
 .s3-card {
   position: relative;
-  flex: none;
-  width: clamp(260px, 30vw, 400px);
+  width: 100%;
   margin: 0;
   padding: 0;
   background: var(--surface);
