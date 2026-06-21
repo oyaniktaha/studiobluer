@@ -836,17 +836,4 @@
     if (e.ctrlKey && e.shiftKey && (e.key === "Y" || e.key === "y")) { e.preventDefault(); open(); }
     if (e.key === "Escape" && overlay.classList.contains("open")) close();
   });
-
-  /* ---- tablet erişim butonu (gizli floating ikon) ---- */
-  const tabBtn = document.createElement("button");
-  tabBtn.id = "adminTabBtn";
-  tabBtn.setAttribute("aria-label", "Yönetim panelini aç");
-  tabBtn.innerHTML = `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><circle cx="10" cy="10" r="3"/><path d="M10 1v2M10 17v2M1 10h2M17 10h2M3.22 3.22l1.42 1.42M15.36 15.36l1.42 1.42M3.22 16.78l1.42-1.42M15.36 4.64l1.42-1.42"/></svg>`;
-  document.body.appendChild(tabBtn);
-
-  // 5-parmak-dokunuş veya 3 saniye uzun basış ile de aç (tablet için)
-  let holdTimer = null;
-  tabBtn.addEventListener("pointerdown", () => { holdTimer = setTimeout(open, 0); });
-  tabBtn.addEventListener("pointerup", () => clearTimeout(holdTimer));
-  tabBtn.addEventListener("click", open);
 })();
