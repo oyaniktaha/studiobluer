@@ -1464,31 +1464,8 @@ body.modal-open { overflow: hidden; }
 .atm-thumb { flex: none; }
 .atm-fields { display: flex; flex-direction: column; gap: 10px; }
 
-/* ---- tablet admin erişim butonu ---- */
-#adminTabBtn {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  z-index: 9000;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--bg-2);
-  color: var(--faint);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  opacity: 0.35;
-  transition: opacity 0.3s, border-color 0.3s, color 0.3s, transform 0.3s var(--ease);
-}
-#adminTabBtn:hover,
-#adminTabBtn:focus-visible {
-  opacity: 1;
-  color: var(--lime);
-  border-color: var(--lime);
-  transform: rotate(30deg);
-}
-#adminTabBtn:active { transform: scale(0.92); }
+/* ---- tablet admin erişim butonu — KALDIRILDI (sadece Ctrl+Shift+Y) ---- */
+#adminTabBtn { display: none !important; }
 
 /* ============================================================
    ADMIN PANEL (hidden — owner only)
