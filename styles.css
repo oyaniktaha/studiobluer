@@ -366,47 +366,8 @@ body.no-3d .hero-canvas { display: none; }
 }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
-/* scroll progress indicator */
-.scroll-progress {
-  position: absolute;
-  bottom: 30px;
-  right: clamp(16px, 3vw, 42px);
-  z-index: 6;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-  opacity: 0;
-  animation: fade 1s ease 1s forwards;
-}
-.scroll-progress .scroll-text {
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, #eaf0ff, transparent 50%);
-}
-.scroll-progress .progress-track {
-  width: 140px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.16);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.scroll-progress .progress-fill {
-  height: 100%;
-  width: 0%;
-  background: var(--lime);
-  box-shadow: 0 0 10px var(--lime);
-}
-.scroll-progress .section-counter {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: color-mix(in oklab, #eaf0ff, transparent 60%);
-  font-variant-numeric: tabular-nums;
-}
 @media (max-width: 600px) {
   .side-menu { display: none; }
-  .scroll-progress .progress-track { width: 96px; }
 }
 
 /* ============================================================
@@ -874,13 +835,34 @@ body.no-3d .hero-canvas { display: none; }
   text-wrap: pretty;
 }
 .svc-cue {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--c, var(--lime));
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-top: auto;
-  transition: gap 0.3s;
+  align-self: flex-start;
+  padding: 9px 18px;
+  border-radius: 100px;
+  white-space: nowrap;
+  border: 1.5px solid color-mix(in oklab, var(--c, var(--lime)), transparent 55%);
+  background: color-mix(in oklab, var(--c, var(--lime)), transparent 92%);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--c, var(--lime));
+  transition: background 0.35s, border-color 0.35s, gap 0.3s, transform 0.3s var(--ease);
 }
-.svc-card:hover .svc-cue { letter-spacing: 0.02em; }
+.svc-cue::after {
+  content: "→";
+  display: inline-block;
+  transition: transform 0.3s var(--ease);
+}
+.svc-card:hover .svc-cue {
+  background: var(--c, var(--lime));
+  border-color: var(--c, var(--lime));
+  color: #0a0a0a;
+  gap: 11px;
+}
+.svc-card:hover .svc-cue::after { transform: translateX(3px); }
 
 @media (max-width: 960px) { .svc-grid { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 560px) { .svc-grid { grid-template-columns: 1fr; } }
