@@ -1120,9 +1120,20 @@ body.no-3d .hero-canvas { display: none; }
   background: color-mix(in oklab, var(--lime), transparent 90%);
 }
 @media (max-width: 680px) {
-  .team-modal-inner { flex-direction: column; }
-  .tm-photo-wrap { flex: 0 0 260px; border-radius: 24px 24px 0 0; min-height: 260px; }
-  .tm-body { padding: 24px; max-height: 50vh; }
+  .team-modal-inner {
+    flex-direction: column !important;
+    width: min(94vw, 440px) !important;
+    height: auto !important;
+    max-height: 88vh !important;
+    overflow-y: auto !important;
+  }
+  .tm-photo-wrap { flex: 0 0 300px !important; width: 100% !important; border-radius: 24px 24px 0 0 !important; min-height: 300px !important; }
+  .tm-body {
+    width: 100% !important;
+    padding: 24px !important;
+    max-height: none !important;
+    align-items: flex-start !important;
+  }
   .team-cards-v2 { grid-template-columns: 1fr; }
   .team-card.tc-offset { margin-top: 0; }
 }
