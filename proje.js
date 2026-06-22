@@ -286,7 +286,19 @@
               img.dataset.checked = "1";
               if (img.naturalHeight / img.naturalWidth >= 1.5) {
                 var fr = img.closest(".g-frame");
-                if (fr) fr.classList.add("is-tall");
+                if (fr) {
+                  fr.classList.add("is-tall");
+                  var imgWrap = fr.querySelector(".g-img");
+                  if (imgWrap && !imgWrap.querySelector(".g-tall-hint")) {
+                    var hint = document.createElement("span");
+                    hint.className = "g-tall-hint";
+                    hint.textContent = "↕ kaydır";
+                    imgWrap.appendChild(hint);
+                    imgWrap.addEventListener("scroll", function () {
+                      hint.style.opacity = imgWrap.scrollTop > 30 ? "0" : "1";
+                    }, { passive: true });
+                  }
+                }
               }
             } else {
               pending = true;
