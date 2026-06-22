@@ -202,14 +202,17 @@
   white-space: nowrap;
 }
 .work-row .w-go {
-  width: 30px; height: 30px;
-  border-radius: 50%;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 100px;
   border: 1px solid var(--line-2);
-  display: grid; place-items: center;
-  opacity: 0.45;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.78rem; font-weight: 700; white-space: nowrap;
+  opacity: 0.6;
   transform: translateX(0);
   transition: opacity 0.4s var(--ease), transform 0.5s var(--ease), background 0.3s, color 0.3s, border-color 0.3s;
 }
+.work-row .w-go-txt { letter-spacing: 0.01em; }
 
 /* hover state (desktop): dim siblings, push name, paint accent */
 @media (hover: hover) and (pointer: fine) {
