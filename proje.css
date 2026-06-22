@@ -124,6 +124,26 @@
 .g-frame.has-cap.alt .g-img  { order: 2; }
 .g-frame.has-cap.alt .g-cap  { order: 1; }
 
+/* dikey (mobil) ekran görüntüsü — telefon genişliğinde, ortalanmış */
+.g-frame.is-tall {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+.g-frame.is-tall .g-img {
+  max-width: 380px;
+  width: 100%;
+  border-radius: 28px;
+}
+.g-frame.is-tall.has-cap {
+  grid-template-columns: 380px 1fr;
+  justify-items: stretch;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.g-frame.is-tall.has-cap .g-img { justify-self: center; }
+.g-frame.is-tall.has-cap.alt { grid-template-columns: 1fr 380px; }
+
 .g-img {
   border-radius: 14px;
   overflow: hidden;
@@ -217,6 +237,8 @@
   }
   .g-frame.has-cap.alt .g-img,
   .g-frame.has-cap.alt .g-cap { order: unset; }
+  .g-frame.is-tall.has-cap,
+  .g-frame.is-tall.has-cap.alt { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
