@@ -1,5 +1,5 @@
 /* studiolume — GİZLİ YÖNETİM PANELİ (yalnızca site sahibi)
-   Açmak için: adres çubuğuna #yonetim ekleyin  (örn. .../studiolume.html#yonetim)
+   Açmak için: adres çubuğuna #yonetim ekleyin  (örn. .../studiobleur.html#yonetim)
               ya da klavyeden  Ctrl + Shift + Y
    Şifre: varsayılan 1234 — panelden değiştirebilirsiniz.
    Ziyaretçiler bu paneli göremez; sadece bu adresi/şifreyi bilen açar. */
@@ -722,7 +722,7 @@
 
   // Tüm site dosyaları — fetch edip push edilecek
   var SITE_FILES = [
-    "studiolume.html", "styles.css", "main.js", "admin.js", "admin.html",
+    "studiobleur.html", "styles.css", "main.js", "admin.js", "admin.html",
     "hero3d.js", "image-slot.js", "portfolio.js", "i18n.js",
     "isler.html", "isler.css",
     "proje.html", "proje.js", "proje.css",
