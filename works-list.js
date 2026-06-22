@@ -120,7 +120,7 @@
         <span class="sc-card-num">${String(i + 1).padStart(2, "0")}</span>
         <h3 class="sc-card-title">${sc.label}</h3>
         <p class="sc-card-desc">${sc.desc}</p>
-        <span class="sc-card-go">→</span>
+        <span class="sc-card-go">İşleri gör →</span>
       </a>`
     ).join("");
   }
@@ -207,22 +207,10 @@
 
     // AI de artık subcat kartları gösteriyor — spline yok
     document.body.classList.remove("mode-ai");
-
-    // 3D kategorisi → ALET tarzı otomatik-oynatan kart destesi (diğerleri liste)
-    if (cat === "3d" && window.mountStage3D) {
-      worksEl.hidden = true;
-      emptyEl.hidden = true;
-      document.body.classList.add("mode-3d");
-      document.body.classList.remove("has-rows");
-      if (stage3d) stage3d.destroy();
-      stage3d = window.mountStage3D({
-        container: document.getElementById("stage3d"),
-        items,
-        thumbHTML,
-        openLB,
-      });
-      return;
-    }
+    document.body.classList.remove("mode-3d");
+    if (stage3d) { stage3d.destroy(); stage3d = null; }
+    var st3 = document.getElementById("stage3d");
+    if (st3) st3.hidden = true;
 
     if (!items.length) {
       worksEl.hidden = true;
