@@ -124,25 +124,61 @@
 .g-frame.has-cap.alt .g-img  { order: 2; }
 .g-frame.has-cap.alt .g-cap  { order: 1; }
 
-/* dikey (mobil) ekran görüntüsü — telefon genişliğinde, ortalanmış */
+/* dikey (mobil) ekran görüntüsü — sabit yükseklikli telefon penceresi, içinde kayar */
 .g-frame.is-tall {
   grid-template-columns: 1fr;
   justify-items: center;
 }
 .g-frame.is-tall .g-img {
-  max-width: 380px;
+  max-width: 340px;
   width: 100%;
-  border-radius: 28px;
+  height: 600px;
+  border-radius: 34px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cat, var(--lime)) transparent;
+  border: 8px solid #111;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  scroll-snap-type: y proximity;
 }
+.g-frame.is-tall .g-img::-webkit-scrollbar { width: 5px; }
+.g-frame.is-tall .g-img::-webkit-scrollbar-thumb { background: var(--cat, var(--lime)); border-radius: 100px; }
+.g-frame.is-tall .g-img img {
+  width: 100%;
+  height: auto;
+}
+.g-frame.is-tall .g-img:hover img { transform: none; }
 .g-frame.is-tall.has-cap {
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 340px 1fr;
   justify-items: stretch;
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
+  gap: clamp(28px, 5vw, 72px);
 }
 .g-frame.is-tall.has-cap .g-img { justify-self: center; }
-.g-frame.is-tall.has-cap.alt { grid-template-columns: 1fr 380px; }
+.g-frame.is-tall.has-cap.alt { grid-template-columns: 1fr 340px; }
+
+/* uzun ekranın altında 'kaydır' ipucu */
+.g-frame.is-tall .g-img::after {
+  content: "";
+}
+.g-tall-hint {
+  position: absolute;
+  bottom: 12px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cat, var(--lime));
+  background: rgba(0,0,0,0.6);
+  padding: 5px 12px;
+  border-radius: 100px;
+  pointer-events: none;
+  z-index: 3;
+  white-space: nowrap;
+}
 
 .g-img {
   border-radius: 14px;
