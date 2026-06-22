@@ -276,8 +276,10 @@
           '</div>';
         }).join("");
 
-        // Dikey (mobil) ekran görüntülerini otomatik algıla → telefon genişliğinde göster
-        var tallImgs = Array.prototype.slice.call(framesEl.querySelectorAll(".g-img img"));
+        // Dikey (mobil) ekran görüntülerini otomatik algıla → telefon penceresi (SADECE UI/UX)
+        var tallImgs = (w.cat === "uiux")
+          ? Array.prototype.slice.call(framesEl.querySelectorAll(".g-img img"))
+          : [];
         function checkTall() {
           var pending = false;
           tallImgs.forEach(function (img) {
