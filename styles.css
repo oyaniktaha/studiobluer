@@ -1820,6 +1820,11 @@ body.calm .logo .dot { animation: none !important; }
    ============================================================ */
 @media (max-width: 900px) {
   .nav-links { display: none; }
+  /* mobil nav: dil + proje başlat yan yana, taşmasın */
+  .nav { padding-left: 18px; padding-right: 18px; gap: 10px; }
+  .nav-cta { gap: 10px; flex-shrink: 0; }
+  .nav-cta .btn-primary { white-space: nowrap; flex-shrink: 0; padding-left: 14px; padding-right: 14px; }
+  .nav .logo { margin-right: auto; }
   .services-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
   .stat { padding: 8px 22px; }
@@ -1836,4 +1841,10 @@ body.calm .logo .dot { animation: none !important; }
   .stat:first-child { border-top: none; padding-top: 8px; }
   .process-grid { grid-template-columns: 1fr; }
   .hero-bottom { flex-direction: column; align-items: flex-start; }
+  /* hero butonları eşit genişlik, alt alta */
+  .hero-actions { width: 100%; flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  /* dil seçici logodan uzak dursun */
+  .nav-cta { gap: 8px; }
+  .lang-picker { margin-right: 2px; }
 }
