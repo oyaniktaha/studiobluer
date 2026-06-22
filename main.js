@@ -28,6 +28,27 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---- mobile hamburger menu ---- */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  if (menuBtn && mobileMenu) {
+    const closeMenu = () => {
+      menuBtn.classList.remove("open");
+      mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("menu-open");
+    };
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuBtn.classList.toggle("open", isOpen);
+      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      mobileMenu.setAttribute("aria-hidden", isOpen ? "false" : "true");
+      document.body.classList.toggle("menu-open", isOpen);
+    });
+    mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+  }
+
   /* ---- scroll reveal ---- */
   const io = new IntersectionObserver(
     (entries) => {
