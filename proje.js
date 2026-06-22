@@ -275,6 +275,26 @@
             ) : "") +
           '</div>';
         }).join("");
+
+        // Dikey (mobil) ekran görüntülerini otomatik algıla → telefon genişliğinde göster
+        var tallImgs = Array.prototype.slice.call(framesEl.querySelectorAll(".g-img img"));
+        function checkTall() {
+          var pending = false;
+          tallImgs.forEach(function (img) {
+            if (img.dataset.checked) return;
+            if (img.naturalWidth && img.naturalHeight) {
+              img.dataset.checked = "1";
+              if (img.naturalHeight / img.naturalWidth >= 1.5) {
+                var fr = img.closest(".g-frame");
+                if (fr) fr.classList.add("is-tall");
+              }
+            } else {
+              pending = true;
+            }
+          });
+          if (pending) setTimeout(checkTall, 250);
+        }
+        checkTall();
       }
     }
 
