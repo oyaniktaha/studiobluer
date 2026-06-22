@@ -155,7 +155,7 @@
     return `<a class="work-row" href="#" data-i="${i}">
       <span class="w-lead"><span class="w-idx">${idx}</span>${hintHTML(w)}</span>
       <span class="w-name">${esc(w.title) || "Başlıksız"}</span>
-      <span class="w-meta">${yr}${tags}<span class="w-go">→</span></span>
+      <span class="w-meta">${yr}${tags}<span class="w-go"><span class="w-go-txt">İşe git</span> →</span></span>
       <span class="w-thumb">${thumbHTML(w)}</span>
     </a>`;
   }
