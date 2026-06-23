@@ -586,6 +586,37 @@ body:not(.mode-ai) .ai-spline { display: none; }
   .ai-spline-card { grid-template-columns: 1fr; min-height: unset; }
   .ai-spline-card .spline-vp { border-left: none; border-top: 1px solid var(--line); height: 300px; }
 }
+
+/* ---------- mobil nav: kategori sekmeleri logonun altına, tek satır kaydırmalı ---------- */
+@media (max-width: 720px) {
+  .isler-nav {
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 16px var(--pad) 12px;
+  }
+  .isler-back { font-size: 1.05rem; flex-shrink: 0; }
+  .isler-back .bk { width: 30px; height: 30px; }
+  .isler-switch {
+    order: 3;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .isler-switch::-webkit-scrollbar { display: none; }
+  .isler-switch a {
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.16);
+    padding: 7px 16px;
+  }
+  /* header'ı nav'ın yeni yüksekliğine göre aşağı it */
+  .isler-head { padding-top: clamp(150px, 22vh, 210px); }
+  body.mode-3d .isler-head,
+  body.mode-ai .isler-head { padding-top: clamp(150px, 22vh, 210px); }
+}
    Projeler soldan sağa kayar; sürüklenebilir. Tam genişlik (full-bleed).
    (scoped to #stage3d / body.mode-3d — never affects other categories)
    ============================================================ */
