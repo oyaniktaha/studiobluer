@@ -27,7 +27,6 @@
     ],
     product: [
       { id: "konsept",   label: "Konsept Ürün Tasarımı",              desc: "Fikir aşamasından son aşamaya kadar yenilikçi ürünlerin tasarlanması." },
-      { id: "animasyon", label: "Ürün Animasyonu",                    desc: "Ürünün çalışma prensiplerini ve tasarım detaylarını vurgulayan 3D animasyonlar." },
       { id: "studio",    label: "Stüdyo Kalitesinde Görselleştirme", desc: "Ürünlerin e-ticaret veya kataloglar için fotogerçekçi renderlarının alınması." },
       { id: "lifestyle", label: "Mekan İçi Entegrasyon",             desc: "Ürünlerin kullanımını daha iyi yansıtmak için 3D iç mekanlara yerleştirilerek sunulması." },
       { id: "teknik",    label: "İmalat ve Teknik Çizimler",         desc: "Üretim aşamasına uygun, detaylı teknik resimler ve kesit dosyalarının hazırlanması." },
