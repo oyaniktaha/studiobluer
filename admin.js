@@ -529,7 +529,7 @@
   function downscale(dataUrl, cb) {
     const img = new Image();
     img.onload = () => {
-      const max = 1280;
+      const max = 1100;
       let { width: w, height: h } = img;
       if (w > max || h > max) {
         if (w >= h) { h = Math.round((h * max) / w); w = max; }
@@ -537,8 +537,17 @@
       }
       const c = document.createElement("canvas");
       c.width = w; c.height = h;
-      c.getContext("2d").drawImage(img, 0, 0, w, h);
-      cb(c.toDataURL("image/jpeg", 0.82));
+      const ctx = c.getContext("2d");
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(img, 0, 0, w, h);
+      // kademeli kalite: localStorage kotasını aşmamak için ~420KB altına indir
+      let q = 0.78;
+      let out = c.toDataURL("image/jpeg", q);
+      while (out.length > 560000 && q > 0.45) {
+        q -= 0.1;
+        out = c.toDataURL("image/jpeg", q);
+      }
+      cb(out);
     };
     img.onerror = () => cb(dataUrl);
     img.src = dataUrl;
