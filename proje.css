@@ -267,14 +267,22 @@
 
 /* ---- responsive ---- */
 @media (max-width: 760px) {
-  /* nav: geri solda, logo ortada, kategori sağda — dengeli */
-  .pnav { gap: 10px; padding: 12px var(--pad); justify-content: space-between; }
-  .pnav-back { font-size: 0.84rem; flex: 0 0 auto; }
+  /* nav: geri solda, logo TAM ortada (absolute), kategori sağda */
+  .pnav { gap: 10px; padding: 12px var(--pad); justify-content: space-between; position: fixed; }
+  .pnav-back { font-size: 0.84rem; flex: 0 0 auto; z-index: 2; }
   .pnav-back svg { width: 14px; height: 14px; }
-  .pnav .logo { margin-left: 0; font-size: 1.05rem; flex: 1 1 auto; justify-content: center; }
-  .pnav-cat { font-size: 9px; padding: 4px 9px; flex: 0 0 auto; }
+  .pnav .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+    font-size: 1.05rem;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  .pnav-cat { font-size: 9px; padding: 4px 9px; flex: 0 0 auto; z-index: 2; }
   /* içerik fixed nav'ın altında kalmasın — eyebrow tam görünsün */
-  .proje-info { padding-top: clamp(96px, 17vw, 130px); }
+  .proje-info { padding-top: clamp(118px, 22vw, 150px); }
   .g-frame.has-cap,
   .g-frame.has-cap.alt {
     grid-template-columns: 1fr;
