@@ -31,7 +31,6 @@
     ],
     product: [
       { id: "konsept",   label: "Konsept Ürün Tasarımı" },
-      { id: "animasyon", label: "Ürün Animasyonu" },
       { id: "studio",    label: "Stüdyo Kalitesinde Görselleştirme" },
       { id: "lifestyle", label: "Mekan İçi Entegrasyon" },
       { id: "teknik",    label: "İmalat ve Teknik Çizimler" },
