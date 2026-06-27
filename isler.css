@@ -44,6 +44,37 @@
   letter-spacing: -0.03em;
   color: #fff;
 }
+/* sağ taraf — ana menü erişimi (tutarlı gezinme) */
+.isler-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+.isler-nav-link {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.isler-nav-link:hover { color: #fff; }
+.isler-nav-cta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s, border-color 0.3s;
+}
+.isler-nav-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.28); }
+@media (max-width: 860px) {
+  .isler-nav-right { display: none; }
+}
 .isler-back .bk {
   display: inline-grid;
   place-items: center;
