@@ -73,11 +73,26 @@
     return CATS.includes(p) ? p : "uiux";
   }
   function loadWorks() {
+    // YAYINLANMIŞ veri ana kaynak (works-data.js) — müşteri her zaman bunu görür.
+    // Yerel taslak SADECE admin önizleme modunda (?draft=1) kullanılır.
+    const baked = Array.isArray(window.STUDIOLUME_WORKS) ? window.STUDIOLUME_WORKS.slice() : [];
+    const wantDraft = new URLSearchParams(location.search).get("draft") === "1";
+    if (wantDraft) {
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw !== null) {
+          const local = JSON.parse(raw) || [];
+          if (local.length) return local;
+        }
+      } catch (e) {}
+    }
+    // yayınlanmış veri varsa onu kullan; yoksa (ilk kurulum) yerel taslağa düş
+    if (baked.length) return baked;
     try {
       const raw = localStorage.getItem(KEY);
       if (raw !== null) return JSON.parse(raw) || [];
     } catch (e) {}
-    return Array.isArray(window.STUDIOLUME_WORKS) ? window.STUDIOLUME_WORKS.slice() : [];
+    return [];
   }
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, (c) =>
