@@ -42,6 +42,11 @@
     <a href="isler-ai.html" data-cat="ai">AI</a>
     <a href="isler-product.html" data-cat="product">Product</a>
   </div>
+  <div class="isler-nav-right">
+    <a href="studiobleur.html#hizmetler" class="isler-nav-link">Hizmetler</a>
+    <a href="bize-ulasin.html" class="isler-nav-link">İletişim</a>
+    <a href="iletisim.html" class="isler-nav-cta">Proje başlat →</a>
+  </div>
 </nav>
 
 <!-- header -->
@@ -75,7 +80,7 @@
   <div class="stage3d-viewport" id="vp3d">
     <div class="stage3d-track" id="track3d"></div>
   </div>
-  <div class="stage3d-hint" id="s3Hint">↔ sürükle</div>
+  <div class="stage3d-hint" id="s3Hint" aria-hidden="true">↔ sürükle</div>
 </section>
 
 <!-- mini footer -->
@@ -91,11 +96,11 @@
 <div class="reveal-img" id="revealImg" aria-hidden="true"><div class="ri-inner" id="revealInner"></div></div>
 
 <!-- custom cursor -->
-<div class="isler-cursor" id="cursor"><span class="lbl">aç</span></div>
+<div class="isler-cursor" id="cursor" aria-hidden="true"><span class="lbl">aç</span></div>
 
 <!-- detail lightbox -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lightbox-close" id="lbClose" aria-label="Kapat">×</button>
+  <button class="lightbox-close" id="lbClose" aria-label="Kapat"><span aria-hidden="true">×</span></button>
   <div class="lightbox-inner">
     <div class="lightbox-visual" id="lbVisual"></div>
     <div class="lightbox-info">
@@ -105,7 +110,7 @@
       <div class="lb-tags" id="lbTags"></div>
     </div>
   </div>
-  <div class="lightbox-hint">Kapatmak için boş alana tıkla <kbd>ESC</kbd></div>
+  <div class="lightbox-hint" aria-hidden="true">Kapatmak için boş alana tıkla <kbd>ESC</kbd></div>
 </div>
 
 <script>window.__ISLER_CAT = "3d";</script>
