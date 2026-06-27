@@ -33,10 +33,10 @@
     ],
   };
   const META = {
-    uiux:    { num: "01", label: "UI/UX",   title: "Arayüz &amp; Deneyim",  color: "var(--lime)",   desc: "Kullanıcı araştırmasından yüksek sadakatli arayüzlere; sezgisel, ölçülebilir deneyimler." },
-    "3d":    { num: "02", label: "3D",       title: "3D Görselleştirme",     color: "var(--coral)",  desc: "Fotogerçekçi render, animasyon ve etkileşimli 3D — ürünleri gözle görülür kılan işler." },
-    ai:      { num: "03", label: "AI",       title: "Yapay Zekâ",            color: "var(--violet)", desc: "Üretken yapay zekâ, otomasyon ve akıllı arayüzlerle hızlandırdığımız çözümler." },
-    product: { num: "04", label: "Product",  title: "Ürün Tasarımı",         color: "var(--sky)",    desc: "Fikirden lansmana; ürün stratejisi, yol haritası ve uçtan uca ürün tasarımı." },
+    uiux:    { num: "01", label: "UI/UX",   title: "Arayüz &amp; Deneyim",  color: "var(--lime)",   desc: "Arayüz, deneyim ve dijital ürün akışları." },
+    "3d":    { num: "02", label: "3D",       title: "3D Görselleştirme",     color: "var(--coral)",  desc: "Ürün, mekan ve konseptleri fotogerçekçi görsellere dönüştürüyoruz." },
+    ai:      { num: "03", label: "AI",       title: "Yapay Zekâ",            color: "var(--violet)", desc: "Tasarım, içerik ve üretim süreçlerini hızlandıran yapay zekâ destekli sistemler." },
+    product: { num: "04", label: "Product",  title: "Ürün Tasarımı",         color: "var(--sky)",    desc: "Fikirden forma, formdan üretilebilir ürüne." },
   };
 
   // örnek (placeholder) işler — gerçek iş yoksa gösterilir
@@ -197,7 +197,7 @@
       document.getElementById("demoNote").hidden = true;
       showSubcatCards();
       // Başlığı güncelle
-      document.getElementById("catDesc").textContent = "Aşağıdaki uzmanlık alanlarından birini seçin.";
+      document.getElementById("catDesc").textContent = meta.desc;
       return;
     }
 
@@ -216,7 +216,7 @@
         filtered = [];
         const sc = (SUBCATS[cat] || []).find((s) => s.id === activeSubcat);
         emptyEl.querySelector && (emptyEl.querySelector("p").textContent =
-          `"${sc ? sc.label : activeSubcat}" alt kategorisinde henüz proje bulunmuyor. Admin panelinden projelere alt kategori atayın.`);
+          `${sc ? sc.label : "Bu alan"} kapsamındaki seçili projelerimiz hazırlanıyor. Çok yakında burada paylaşacağız.`);
       }
     } else {
       filtered = real;
