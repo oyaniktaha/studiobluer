@@ -892,6 +892,15 @@ body.no-3d .hero-canvas { display: none; }
   flex: 1;
   text-wrap: pretty;
 }
+.svc-out {
+  font-size: 0.74rem;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  color: var(--faint);
+  padding-top: 12px;
+  margin-top: 2px;
+  border-top: 1px solid var(--line);
+}
 .svc-cue {
   display: inline-flex;
   align-items: center;
@@ -1254,6 +1263,16 @@ image-slot {
 .quote .who .ph { width: 44px; height: 44px; border-radius: 50%; flex: none; }
 .quote .who .n { font-weight: 600; font-size: 0.92rem; }
 .quote .who .r { color: var(--faint); font-size: 0.8rem; }
+.quote .who .t-tag {
+  flex: none;
+  display: inline-flex; align-items: center;
+  padding: 6px 12px; border-radius: 8px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+}
+.quote .who .t-tag.t-lime { color: var(--lime); }
+.quote .who .t-tag.t-coral { color: var(--coral); }
+.quote .who .t-tag.t-violet { color: var(--violet); }
 
 /* ============================================================
    FAQ
