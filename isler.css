@@ -379,19 +379,49 @@ body.lb-active .reveal-img { opacity: 0 !important; }
 
 /* ---------- empty state ---------- */
 .isler-empty {
-  max-width: var(--maxw);
+  max-width: 620px;
   margin: 20px auto;
-  padding: clamp(40px, 8vw, 90px) var(--pad);
+  padding: clamp(48px, 9vw, 110px) var(--pad);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ie-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cat, var(--lime));
+  margin-bottom: 22px;
 }
 .isler-empty .big {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(2.4rem, 7vw, 5rem);
+  font-size: clamp(2.1rem, 6vw, 3.8rem);
   letter-spacing: -0.03em;
+  line-height: 1.02;
   color: var(--text);
 }
-.isler-empty p { color: var(--muted); margin-top: 18px; }
+.isler-empty p { color: var(--muted); margin-top: 18px; line-height: 1.7; max-width: 460px; text-wrap: pretty; }
+.ie-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 32px; }
+.ie-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 100px;
+  font-size: 0.9rem; font-weight: 600; white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: var(--text); transition: background 0.3s, border-color 0.3s;
+}
+.ie-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.28); }
+.ie-btn-primary {
+  background: var(--cat, var(--lime)); color: #0a0a0a; border-color: transparent;
+}
+.ie-btn-primary:hover { filter: brightness(1.08); background: var(--cat, var(--lime)); }
+@media (max-width: 480px) {
+  .ie-actions { width: 100%; flex-direction: column; }
+  .ie-btn { width: 100%; justify-content: center; }
+}
 .isler-demo-note {
   max-width: var(--maxw);
   margin: 0 auto;
