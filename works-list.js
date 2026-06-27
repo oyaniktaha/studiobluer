@@ -69,6 +69,8 @@
   };
 
   function getCat() {
+    // önce statik kategori dosyasının belirlediği sabit (isler-uiux.html vb.)
+    if (window.__ISLER_CAT && CATS.includes(window.__ISLER_CAT)) return window.__ISLER_CAT;
     const p = new URLSearchParams(location.search).get("kategori");
     return CATS.includes(p) ? p : "uiux";
   }
@@ -108,7 +110,11 @@
   document.getElementById("catEyebrow").innerHTML = meta.num + " — " + meta.label;
   document.getElementById("catTitle").innerHTML = meta.title;
   document.getElementById("catDesc").textContent = meta.desc;
-  document.title = meta.label + " işleri — studiobleur";
+  // document.title — statik kategori başlığı zaten doğru (isler-3d.html vb.);
+  // sadece eski isler.html?kategori= akışında (statik başlık yoksa) ayarla
+  if (!window.__ISLER_CAT) {
+    document.title = meta.label + " işleri — studiobleur";
+  }
 
   // switch active
   document.querySelectorAll("#catSwitch a").forEach((a) => {
@@ -130,7 +136,7 @@
     const subcats = SUBCATS[cat] || [];
     wrap.hidden = false;
     wrap.innerHTML = subcats.map((sc, i) =>
-      `<a class="sc-card" href="isler.html?kategori=${cat}&subcat=${sc.id}">
+      `<a class="sc-card" href="isler-${cat}.html?subcat=${sc.id}">
         <span class="sc-card-num">${String(i + 1).padStart(2, "0")}</span>
         <h3 class="sc-card-title">${sc.label}</h3>
         <p class="sc-card-desc">${sc.desc}</p>
@@ -145,7 +151,7 @@
     const sc = (SUBCATS[cat] || []).find((s) => s.id === activeSubcat);
     bar.hidden = false;
     bar.innerHTML =
-      `<a class="sc-back" href="isler.html?kategori=${cat}">← ${meta.title || meta.label}</a>` +
+      `<a class="sc-back" href="isler-${cat}.html">← ${meta.title || meta.label}</a>` +
       (sc ? `<span class="sc-back-sep">/</span><span class="sc-back-cur">${esc(sc.label)}</span>` : "");
   }
 
@@ -336,7 +342,7 @@
     e.preventDefault();
     const w = items[+row.dataset.i];
     if (w && w.id) {
-      var backUrl = "isler.html?kategori=" + cat + (activeSubcat ? "&subcat=" + activeSubcat : "");
+      var backUrl = "isler-" + cat + ".html" + (activeSubcat ? "?subcat=" + activeSubcat : "");
       location.href = "proje.html?id=" + encodeURIComponent(w.id) + "&back=" + encodeURIComponent(backUrl);
     } else {
       openLB(w);
