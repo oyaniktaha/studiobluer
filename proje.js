@@ -74,7 +74,7 @@
 
     // nav + back links
     var backUrl = new URLSearchParams(location.search).get("back") ||
-      ("isler.html?kategori=" + (w.cat || "uiux"));
+      ("isler-" + (w.cat || "uiux") + ".html");
     var backBtn = document.getElementById("backBtn");
     if (backBtn) backBtn.href = backUrl;
     var footBack = document.getElementById("footBack");
