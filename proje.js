@@ -18,8 +18,18 @@
   };
 
   function loadWork() {
-    if (!window.StudioWorks) return null;
-    return window.StudioWorks.load().find(function (w) { return w.id === id; }) || null;
+    // YAYINLANMIŞ veri ana kaynak; ?draft=1 ile admin yerel taslağı önizler
+    const wantDraft = new URLSearchParams(location.search).get("draft") === "1";
+    const baked = Array.isArray(window.STUDIOLUME_WORKS) ? window.STUDIOLUME_WORKS : [];
+    if (!wantDraft && baked.length) {
+      const found = baked.find(function (w) { return w.id === id; });
+      if (found) return found;
+    }
+    if (window.StudioWorks) {
+      const w = window.StudioWorks.load().find(function (w) { return w.id === id; });
+      if (w) return w;
+    }
+    return baked.find(function (w) { return w.id === id; }) || null;
   }
 
   function esc(s) {
