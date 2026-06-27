@@ -309,6 +309,12 @@ body {
 .file-drop .fd-icon { font-size: 1.5rem; opacity: .5; }
 .file-drop .fd-text { font-size: .82rem; color: var(--muted); text-align: center; }
 .file-drop .fd-text strong { color: var(--lime); }
+.trust-list { list-style: none; margin: 36px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.trust-list li { display: flex; align-items: flex-start; gap: 12px; font-size: .88rem; color: var(--muted); line-height: 1.55; }
+.trust-list li strong { color: var(--text); font-weight: 600; }
+.trust-list a { color: var(--lime); text-decoration: none; }
+.trust-list a:hover { text-decoration: underline; }
+.trust-list .tl-ic { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: rgba(255,255,255,.05); border: 1px solid var(--line); font-size: .8rem; }
 .file-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .file-item {
   display: flex; align-items: center; gap: 6px;
@@ -391,8 +397,8 @@ body {
   <!-- LEFT -->
   <div class="left-panel">
     <span class="eyebrow">Proje Başlat</span>
-    <h1 style="font-family: &quot;Space Grotesk&quot;">Hadi projenizi<br /><em>hayata geçirelim.</em></h1>
-    <p>Bir fikir, bir brief ya da sadece bir soru yeterli. Birlikte neye ihtiyacınız olduğunu bulalım ve harekete geçelim.</p>
+    <h1 style="font-family: &quot;Space Grotesk&quot;">Bir proje<br /><em>başlatalım.</em></h1>
+    <p>UI/UX, 3D görselleştirme, yapay zekâ ve ürün tasarımı projeleriniz için bize kısa bir brief bırakın. Size en uygun çalışma modelini birlikte netleştirelim.</p>
 
     <div class="cat-label">Çalışma alanlarımız</div>
     <div class="cat-chips">
@@ -402,9 +408,11 @@ body {
       <div class="cat-chip c-sky"><span></span>Ürün Tasarımı</div>
     </div>
 
-    <div class="contact-details">
-      <a id="mailLink" href="#"></a>
-    </div>
+    <ul class="trust-list">
+      <li><span class="tl-ic" aria-hidden="true">✉</span><a id="mailLink" href="#">info@studiobleur.com</a></li>
+      <li><span class="tl-ic" aria-hidden="true">⏱</span>Genellikle <strong>24 saat içinde</strong> dönüş yapıyoruz.</li>
+      <li><span class="tl-ic" aria-hidden="true">⛭</span>Paylaştığınız proje bilgileri yalnızca değerlendirme amacıyla kullanılır.</li>
+    </ul>
   </div>
 
   <!-- RIGHT — FORM -->
@@ -470,12 +478,12 @@ body {
           <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.zip,.sketch,.fig"/>
           <div class="fd-icon">📎</div>
           <div class="fd-text">Dosyaları buraya sürükleyin veya <strong>seçin</strong></div>
-          <div class="fd-text" style="font-size:.72rem;opacity:.6">PDF, DOC, PNG, JPG, ZIP, Figma — maks. 10MB</div>
+          <div class="fd-text" style="font-size:.72rem;opacity:.6">Brief, referans görseli, PDF veya sunum dosyası ekleyebilirsiniz.</div>
         </div>
         <div class="file-list" id="fileList"></div>
       </div>
 
-      <button type="submit" class="btn-submit" id="btnSubmit">Gönder →</button>
+      <button type="submit" class="btn-submit" id="btnSubmit">Projeyi Gönder →</button>
       <p id="formErr" style="display:none;color:#ff7a5c;font-size:.85rem;margin-top:8px;"></p>
 
     </form>
@@ -590,7 +598,7 @@ body {
         document.getElementById('successMsg').style.display = 'flex';
       } else {
         btn.disabled = false;
-        btn.textContent = 'Gönder →';
+        btn.textContent = 'Projeyi Gönder →';
         document.getElementById('formErr').textContent = 'Bir hata oluştu. Lütfen tekrar deneyin.';
         document.getElementById('formErr').style.display = 'block';
       }
