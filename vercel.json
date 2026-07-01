@@ -5,19 +5,10 @@
     { "source": "/", "destination": "/studiobleur.html" }
   ],
   "redirects": [
-    { "source": "/studiobleur", "destination": "/", "permanent": true },
-    { "source": "/studiobleur.html", "destination": "/", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/isler", "has": [{ "type": "query", "key": "kategori", "value": "uiux" }], "destination": "/isler-uiux", "permanent": true },
     { "source": "/isler", "has": [{ "type": "query", "key": "kategori", "value": "3d" }], "destination": "/isler-3d", "permanent": true },
     { "source": "/isler", "has": [{ "type": "query", "key": "kategori", "value": "ai" }], "destination": "/isler-ai", "permanent": true },
-    { "source": "/isler", "has": [{ "type": "query", "key": "kategori", "value": "product" }], "destination": "/isler-product", "permanent": true },
-    { "source": "/isler.html", "has": [{ "type": "query", "key": "kategori", "value": "uiux" }], "destination": "/isler-uiux", "permanent": true },
-    { "source": "/isler.html", "has": [{ "type": "query", "key": "kategori", "value": "3d" }], "destination": "/isler-3d", "permanent": true },
-    { "source": "/isler.html", "has": [{ "type": "query", "key": "kategori", "value": "ai" }], "destination": "/isler-ai", "permanent": true },
-    { "source": "/isler.html", "has": [{ "type": "query", "key": "kategori", "value": "product" }], "destination": "/isler-product", "permanent": true },
-    { "source": "/iletisim.html", "destination": "/iletisim", "permanent": true },
-    { "source": "/bize-ulasin.html", "destination": "/bize-ulasin", "permanent": true }
+    { "source": "/isler", "has": [{ "type": "query", "key": "kategori", "value": "product" }], "destination": "/isler-product", "permanent": true }
   ],
   "headers": [
     {
