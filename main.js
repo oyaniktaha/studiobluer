@@ -63,6 +63,11 @@
   );
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
+ // SEO/erişilebilirlik yedeği: kaydırma olmasa bile içerik belirli süre sonra görünür olsun
+  setTimeout(() => {
+    document.querySelectorAll(".reveal:not(.in)").forEach((el) => el.classList.add("in"));
+  }, 1200);
+
   /* ---- count-up stats ---- */
   const animateCount = (el) => {
     const target = parseFloat(el.dataset.count);
