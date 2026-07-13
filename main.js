@@ -63,11 +63,6 @@
   );
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
- // SEO/erişilebilirlik yedeği: kaydırma olmasa bile içerik belirli süre sonra görünür olsun
-  setTimeout(() => {
-    document.querySelectorAll(".reveal:not(.in)").forEach((el) => el.classList.add("in"));
-  }, 1200);
-
   /* ---- count-up stats ---- */
   const animateCount = (el) => {
     const target = parseFloat(el.dataset.count);
@@ -224,4 +219,84 @@
     window.addEventListener("resize", update);
     update();
   }
+
+  /* ---- HERO dönen kart şeridi (işlerden görseller, video gibi, tıklanmaz) ---- */
+  (function heroStrip() {
+    const rowA = document.getElementById("heroRowA");
+    const rowB = document.getElementById("heroRowB");
+    if (!rowA || !rowB) return;
+
+    const CAT = {
+      uiux:    { label: "UI/UX",   c: "var(--lime)",   glow: "var(--lime-glow)" },
+      "3d":    { label: "3D",      c: "var(--sky)",    glow: "oklch(0.74 0.14 233 / 0.4)" },
+      ai:      { label: "AI",      c: "var(--violet)", glow: "var(--violet-glow)" },
+      product: { label: "Ürün",    c: "var(--coral)",  glow: "oklch(0.74 0.2 32 / 0.4)" },
+    };
+
+    function collect() {
+      let works = [];
+      try {
+        if (window.StudioWorks && typeof window.StudioWorks.load === "function") works = window.StudioWorks.load() || [];
+      } catch (e) {}
+      if (!works.length && Array.isArray(window.STUDIOLUME_WORKS)) works = window.STUDIOLUME_WORKS;
+      // görseli olan işleri al (ana görsel veya galeri ilk kare)
+      const cards = [];
+      works.forEach((w) => {
+        const img = w.image || (Array.isArray(w.gallery) && w.gallery[0] && w.gallery[0].image);
+        if (img && CAT[w.cat]) cards.push({ img, cat: w.cat });
+      });
+      return cards;
+    }
+
+    function placeholders() {
+      // iş yoksa: 4 kategori renkli kart (görselsiz, sadece fikir versin)
+      return ["uiux", "3d", "ai", "product", "uiux", "3d", "ai", "product"].map((c) => ({ img: null, cat: c }));
+    }
+
+    function makeCard(item) {
+      const meta = CAT[item.cat] || CAT.uiux;
+      const el = document.createElement("div");
+      el.className = "hero-card";
+      el.style.setProperty("--hc-c", meta.c);
+      el.style.setProperty("--hc-glow", meta.glow);
+      if (item.img) {
+        const im = document.createElement("img");
+        im.loading = "lazy";
+        im.decoding = "async";
+        im.alt = "";
+        im.src = item.img;
+        el.appendChild(im);
+      } else {
+        const ph = document.createElement("div");
+        ph.className = "hc-ph";
+        el.appendChild(ph);
+      }
+      const cat = document.createElement("span");
+      cat.className = "hc-cat";
+      cat.textContent = meta.label;
+      el.appendChild(cat);
+      return el;
+    }
+
+    function build() {
+      let cards = collect();
+      if (cards.length < 5) cards = cards.concat(placeholders());
+      // en az 6 kart, kesintisiz döngü için her satırda 2 kopya
+      const a = cards.slice();
+      const b = cards.slice().reverse();
+      rowA.innerHTML = "";
+      rowB.innerHTML = "";
+      [...a, ...a].forEach((it) => rowA.appendChild(makeCard(it)));
+      [...b, ...b].forEach((it) => rowB.appendChild(makeCard(it)));
+    }
+
+    build();
+    // IndexedDB hydrate edince (gerçek işler gelince) yeniden kur
+    let rebuilt = false;
+    window.addEventListener("works-updated", () => {
+      if (rebuilt) return;
+      rebuilt = true;
+      build();
+    });
+  })();
 })();
