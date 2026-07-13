@@ -269,6 +269,83 @@ body.menu-open { overflow: hidden; }
   text-align: center;
   isolation: isolate;
 }
+/* ---- hero dönen kart şeridi (video gibi, tıklanmaz) ---- */
+.hero-strip {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0;
+  height: 42%;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 30px;
+  pointer-events: none;
+  perspective: 1600px;
+  opacity: 0.42;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to top, #000 55%, transparent 100%), radial-gradient(120% 100% at 50% 100%, #000 55%, transparent 82%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to top, #000 55%, transparent 100%), radial-gradient(120% 100% at 50% 100%, #000 55%, transparent 82%);
+          mask-composite: intersect;
+}
+.hero-strip-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform: rotateX(20deg) rotateZ(0deg) scale(1.02);
+  transform-style: preserve-3d;
+}
+.hero-strip-row {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: heroSlide 70s linear infinite;
+}
+.hero-strip-row.rev { display: none; }
+@keyframes heroSlide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes heroSlideRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.hero-card {
+  position: relative;
+  width: 208px;
+  height: 130px;
+  flex: none;
+  border-radius: 13px;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+.hero-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-card .hc-ph { position: absolute; inset: 0; background: radial-gradient(120% 120% at 30% 20%, var(--hc-glow, var(--lime-glow)), transparent 70%); }
+.hero-card .hc-cat {
+  position: absolute;
+  left: 10px; bottom: 10px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 100px;
+  color: #0a0a0a;
+  background: var(--hc-c, var(--lime));
+}
+/* metni okunur tutan koyu vinyet */
+.hero-strip-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, transparent 0%, color-mix(in oklab, var(--bg), transparent 40%) 45%, color-mix(in oklab, var(--bg), transparent 82%) 62%, transparent 78%);
+}
+@media (max-width: 680px) {
+  .hero-strip { opacity: 0.32; height: 34%; }
+  .hero-card { width: 150px; height: 94px; }
+  .hero-strip-stage { gap: 12px; transform: rotateX(18deg) scale(1.0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-strip-row { animation: none !important; }
+}
 .hero-phase {
   position: absolute;
   inset: 0;
