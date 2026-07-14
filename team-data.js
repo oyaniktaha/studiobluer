@@ -3,7 +3,7 @@ window.STUDIOBLEUR_TEAM = [
   {
     "id": "tm1",
     "name": "Bensucan Dikici",
-    "title": "Kurucu · UI/UX Tasarımcı",
+    "title": "Kurucu ·  Endüstriyel Tasarımcı",
     "bio": "İç mekan ve ürün inovasyonuna tutkuyla bağlı, hem fiziksel hem de dijital ortamlarda yaratıcı çözümler üreten bir tasarımcıdır. Yüksek kalitede görseller ve estetik web çözümleri sunmak amacıyla 3D modelleme ve dijital tasarım araçlarını etkin bir şekilde kullanmaktadır. En temel odak noktası, teknik hassasiyeti sanatsal mükemmellikle harmanlayarak ticari tasarımın sınırlarını zorlamaktır.\n\nEğitimine 2021 yılından bu yana Orta Doğu Teknik Üniversitesi'nde (ODTÜ) devam etmektedir. Kariyeri boyunca farklı tasarım disiplinlerinde pratik tecrübeler edinmiş; Kurgu Mobilya'daki deneyiminin ardından Bora Güler Mimarlık'ta 3D Görselleştirme Uzmanı olarak görev yapmıştır. Günümüzde ise Epoif Teknoloji bünyesinde UX/UI Tasarımcısı olarak çalışmalarını sürdürmekte, kullanıcı odaklı ve estetik dijital deneyimler tasarlamaktadır.\n\nGörselleştirme (rendering), 3D modelleme, maket yapımı, ürün geliştirme, proje yönetimi ve kullanıcı deneyimi (UX) alanlarında güçlü yetkinliklere sahiptir. Kavramsal fikirleri hayata geçirirken; 3Ds Max, SketchUp, AutoCAD, Fusion360 ve Rhinoceros gibi 3D modelleme araçlarının yanı sıra Figma, Adobe XD, Adobe Photoshop, Adobe Illustrator ve Lumion gibi tasarım ve görselleştirme yazılımlarını profesyonel düzeyde kullanmaktadır.",
     "school": "Orta Doğu Teknik Üniversitesi, Endüstriyel Tasarım ( İngilizce)",
     "skills": [
